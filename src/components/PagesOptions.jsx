@@ -1,35 +1,44 @@
 import { useState } from "react";
 import { pagesOptions } from "../constants/pagesOptions";
-import Option from "../ui/Option";
+import PagesLink from "../ui/PagesLink";
 import { Link } from "react-router";
 
 const PagesOptions = () => {
   const [currentSec, setCurrentSec] = useState(1);
 
+  const handleKeyDown = (e, optionId) => {
+    if (e.key === "Enter" || e.key === " ") {
+      setCurrentSec(optionId);
+    }
+  };
+
   return (
-    <div className="mt-8 flex flex-col gap-2">
+    <ul className="mt-8 flex flex-col gap-1">
       {pagesOptions.map((option) => {
         return (
-          <Link to={option.link}>
-            <div
-              key={option.id}
-              className={`${
-                option.id === currentSec ? "bg-gray-300" : ""
-              } px-2 py-2 rounded-md`}
+          <li key={option.id}>
+            <Link
+              to={option.link}
               onClick={() => setCurrentSec(option.id)}
+              onKeyDown={(e) => handleKeyDown(e, option.id)}
+              className={`block p-3 ${
+                option.id === currentSec ? "bg-gray-300" : ""
+              }  rounded-md`}
             >
-              <Option
+              <PagesLink
                 icon={option.icon}
                 text={option.text}
-                currenctSecColor={
-                  option.id === currentSec ? "black" : "text-textSecondary"
+                currentSecColor={
+                  option.id === currentSec
+                    ? "text-textPrimary"
+                    : "text-textSecondary"
                 }
               />
-            </div>
-          </Link>
+            </Link>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
 

@@ -3,13 +3,13 @@ import PagesOptions from "./PagesOptions";
 
 const Aside = () => {
   return (
-    <div className="w-60 border-r-2 border-gray-400/50 p-4 bg-lightPrimary text-Textsecondary">
+    <aside className="w-80 border-r-2 border-gray-400/50 p-4 bg-lightPrimary text-Textsecondary">
       {/* header */}
       <Header />
 
       {/* page options */}
       <PagesOptions />
-    </div>
+    </aside>
   );
 };
 
