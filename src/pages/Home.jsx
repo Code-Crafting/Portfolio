@@ -1,10 +1,10 @@
-import Profile from "../components/Profile";
+import About from "./About";
 
 const Home = () => {
   return (
-    <section className="" aria-label="profile">
-      <Profile />
-    </section>
+    <>
+      <About />
+    </>
   );
 };
 

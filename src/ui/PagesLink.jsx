@@ -5,7 +5,7 @@ const PagesLink = ({
 }) => {
   return (
     <div className={`flex gap-2 items-center cursor-pointer`}>
-      {Icon && <Icon className={`text-lg ${currentSecColor}`} />}
+      {Icon && <Icon className={`text-lg ${currentSecColor}`} title={text} />}
       <p className={`font-medium ${currentSecColor}`}>{text}</p>
     </div>
   );

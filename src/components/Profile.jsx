@@ -5,7 +5,7 @@ import CV from "../assets/files/CV.pdf";
 
 const Profile = () => {
   return (
-    <>
+    <section aria-label="profile">
       <div className="flex items-center gap-2">
         {/* icon */}
         <p className=" text-8xl ">🧑‍💻</p>
@@ -29,7 +29,7 @@ const Profile = () => {
           icon={FaDownload}
         />
       </div>
-    </>
+    </section>
   );
 };
 
