@@ -21,12 +21,13 @@ const Profile = () => {
       </div>
 
       <div className="flex gap-8 mt-4 pl-6">
-        <AnchorLink text="Share" icon={FaLink} />
+        <AnchorLink text="Share" icon={FaLink} label="Share portfoliio" />
         <AnchorLink
           text="Download CV"
           addDownload={true}
           path={CV}
           icon={FaDownload}
+          label="Download CV"
         />
       </div>
     </section>

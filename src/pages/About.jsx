@@ -1,26 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SectionHeading from "../ui/SectionHeading";
 import { personalInfo } from "../constants/personalInfo";
 import PersonalInfo from "../ui/PersonalInfo";
 import { useLocation } from "react-router";
+import DetailsArea from "../ui/DetailsArea";
+import Section from "../ui/Section";
 
 const About = () => {
-  const [showDetails, setShowetails] = useState(true);
-  const { pathname } = useLocation();
+  const [showAboutDetails, setShowAboutDetails] = useState(true);
+
   return (
-    <section
-      aria-label="about-me"
-      className={`${pathname !== "/" ? "pl-6" : ""}`}
-    >
+    <Section label="about-me">
       <SectionHeading
         title="about me"
         emoji="👋"
-        setShowetails={setShowetails}
-        pathname={pathname}
+        setterFnc={setShowAboutDetails}
       />
 
-      {showDetails && (
-        <div className={`${pathname === "/" ? "pl-14" : "pl-10"} mt-4`}>
+      {showAboutDetails && (
+        <DetailsArea>
           <p className="text-lg text-textSecondary tracking-wider">
             I’m Monojit Sen, a self-taught Frontend Developer currently pursuing
             a B.Com degree from Calcutta University. <br />
@@ -36,9 +34,9 @@ const About = () => {
               return <PersonalInfo key={info.id} infoData={info} />;
             })}
           </div>
-        </div>
+        </DetailsArea>
       )}
-    </section>
+    </Section>
   );
 };
 

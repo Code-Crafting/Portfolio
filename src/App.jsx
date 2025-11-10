@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import Aside from "./components/Aside";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import Profile from "./components/Profile";
+import Projects from "./pages/Projects";
 const About = lazy(() => import("./pages/About"));
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Aside />
 
       {/* main content */}
-      <main className="flex-1 max-w-7xl mx-auto pt-16 px-8">
+      <main className="flex-1 max-w-7xl mx-auto pt-16 px-8 pb-4 overflow-y-auto h-screen no-scrollbar">
         <Profile />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,6 +22,14 @@ function App() {
             element={
               <Suspense fallback={<p>Loading...</p>}>
                 <About />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <Projects />
               </Suspense>
             }
           />

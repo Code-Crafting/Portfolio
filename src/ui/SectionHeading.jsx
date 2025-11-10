@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { useLocation } from "react-router";
 
-const SectionHeading = ({ emoji, title, setShowetails, pathname }) => {
+const SectionHeading = ({ emoji, title, setterFnc }) => {
   const [rotate, setRotate] = useState(false);
+  const { pathname } = useLocation();
 
   const handleDropdown = () => {
     setRotate((prev) => !prev);
-    setShowetails((prev) => !prev);
+    setterFnc((prev) => !prev);
   };
 
   const handleDropdownOnKeyDown = (e) => {
     if (e.key === "Enter" || e.key === " ") {
       setRotate((prev) => !prev);
-      setShowetails((prev) => !prev);
+      setterFnc((prev) => !prev);
     }
   };
   return (
     <div
       className={`flex items-center gap-3 ${
-        pathname === "/" ? "hover:bg-gray-300 cursor-pointer p-2" : ""
+        pathname === "/" ? "hover:bg-gray-300 cursor-pointer px-2 py-4" : ""
       }   mt-12 rounded-md`}
       onClick={handleDropdown}
       onKeyDown={handleDropdownOnKeyDown}
