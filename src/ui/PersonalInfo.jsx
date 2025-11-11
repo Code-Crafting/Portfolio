@@ -1,5 +1,3 @@
-import { LuArrowUpRight } from "react-icons/lu";
-
 const PersonalInfo = ({ infoData }) => {
   const { emoji, title, subtitle, link } = infoData;
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { pagesOptions } from "../constants/pagesOptions";
-import PagesLink from "../ui/PagesLink";
+import PagesLink from "../ui/links/PagesLink";
 import { Link } from "react-router";
 
 const PagesOptions = () => {

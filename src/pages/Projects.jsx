@@ -4,7 +4,8 @@ import SectionHeading from "../ui/SectionHeading";
 import DetailsArea from "../ui/DetailsArea";
 import { projectsDetails } from "../constants/projectDetails";
 import { shortDescription } from "../lib/shortDescription";
-import AnchorLink from "../ui/AnchorLink";
+import AnchorLink from "../ui/links/AnchorLink";
+import Tech from "../ui/Tech";
 
 const Projects = () => {
   const [showProjectDetails, setShowProjectDetials] = useState(true);
@@ -32,7 +33,7 @@ const Projects = () => {
               return (
                 <div
                   key={id}
-                  className="border border-textSecondary rounded-md p-6 grid grid-cols-[80px_1fr] gap-6"
+                  className="border border-gray-300 rounded-md p-6 grid grid-cols-[80px_1fr] gap-6"
                 >
                   {/* logo */}
                   <div
@@ -59,14 +60,7 @@ const Projects = () => {
                     {/* tech stack */}
                     <div className="flex items-center gap-2 mt-2">
                       {techStack.map((tech, i) => {
-                        return (
-                          <div
-                            key={i}
-                            className="rounded px-4 py-1 bg-gray-200 text-textSecondary font-medium"
-                          >
-                            {tech}
-                          </div>
-                        );
+                        return <Tech key={i} tech={tech} />;
                       })}
                     </div>
 

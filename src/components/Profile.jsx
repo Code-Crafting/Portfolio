@@ -1,4 +1,4 @@
-import AnchorLink from "../ui/AnchorLink";
+import AnchorLink from "../ui/links/AnchorLink";
 import { FaLink } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
 import CV from "../assets/files/CV.pdf";

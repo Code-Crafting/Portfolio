@@ -20,7 +20,7 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
   return (
     <div
       className={`flex items-center gap-3 ${
-        pathname === "/" ? "hover:bg-gray-300 cursor-pointer px-2 py-4" : ""
+        pathname === "/" ? "hover:bg-gray-200 cursor-pointer px-2 py-4" : ""
       }   mt-12 rounded-md`}
       onClick={handleDropdown}
       onKeyDown={handleDropdownOnKeyDown}
@@ -36,7 +36,7 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
       )}
 
       <div className="flex gap-1 items-center">
-        <p className="text-2xl">{emoji}</p>
+        <p className="text-3xl">{emoji}</p>
         <h2 className="capitalize text-2xl font-bold traking-wide">{title}</h2>
       </div>
     </div>
