@@ -8,12 +8,13 @@ const FormContextProvider = ({ children }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     mode: "onChange",
   });
 
   return (
-    <FormContext.Provider value={{ register, handleSubmit, errors }}>
+    <FormContext.Provider value={{ register, handleSubmit, errors, reset }}>
       {children}
     </FormContext.Provider>
   );

@@ -3,16 +3,42 @@ import EmailInput from "../ui/form/EmailInput";
 import InputLabel from "../ui/form/InputLabel";
 import TextArea from "../ui/form/TextArea";
 import TextInput from "../ui/form/TextInput";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "../contexts/formContext";
 import InputError from "../ui/form/InputError";
+import emailjs from "@emailjs/browser";
+import Button from "../ui/Button";
 
 const ContactForm = () => {
-  const { handleSubmit, errors } = useContext(FormContext);
+  const { handleSubmit, errors, reset } = useContext(FormContext);
+  const [isSending, setIsSending] = useState(false);
+
   const inputCommonStyle =
     "w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg placeholder:text-gary-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
 
-  const onSubmit = (data) => console.log(data);
+  // API Keys
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+  const onSubmit = async (data) => {
+    setIsSending(true);
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        data, //data from RHF
+        publicKey
+      );
+      alert("Message sent successfully!");
+      reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send message.");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <form className="space-y-4 " onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +71,7 @@ const ContactForm = () => {
           id="subject"
           placeholder="Project Inquery"
           style={inputCommonStyle}
-          minLength={10}
+          minLength={5}
         />
         {errors.subject && <InputError message={errors.subject.message} />}
       </div>
@@ -62,9 +88,15 @@ const ContactForm = () => {
       </div>
 
       {/* Submit Button */}
-      <button className="w-full text-lg cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] ">
-        <LuSend /> Send Message
-      </button>
+      <Button disabled={isSending ? true : false} type="submit">
+        {isSending ? (
+          <span>Your message is taking off... 🚀</span>
+        ) : (
+          <div className="flex items-center gap-2">
+            <LuSend /> <span>Send Message</span>
+          </div>
+        )}
+      </Button>
 
       <p className="text-sm text-textSecondary text-center">
         I'll get back to you within 24-48 hours 🚀
