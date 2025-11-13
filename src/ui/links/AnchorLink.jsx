@@ -2,7 +2,8 @@ const AnchorLink = ({
   path = "#",
   icon: Icon,
   iconItile = "iconTitle",
-  text,
+  text = " text",
+  textSize = "",
   addDownload = false,
   color = "text-textSecondary group-hover:text-gray-800",
   label = "link",
@@ -18,7 +19,7 @@ const AnchorLink = ({
     >
       <div className="flex gap-2 items-center cursor-pointer group">
         {Icon && <Icon className={color} title={iconItile} />}
-        <p className={color}>{text}</p>
+        <p className={`${color} ${textSize}`}>{text}</p>
       </div>
     </a>
   );

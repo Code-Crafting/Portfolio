@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import ModalFooter from "./ModalFooter";
 import { useEffect, useRef } from "react";
 
-const Modal = ({ children }) => {
+const Modal = ({ children, width = "max-w-lg" }) => {
   const modalRef = useRef(null);
   const previouslyFocusedRef = useRef(null);
 
@@ -42,9 +42,9 @@ const Modal = ({ children }) => {
   }, []);
 
   return createPortal(
-    <div className="absolute top-0 left-0 bg-gray-700/50 backdrop-blur-sm w-full h-screen flex items-center justify-center">
+    <div className="absolute inset-0 bg-gray-700/50 backdrop-blur-sm w-full h-screen flex items-center justify-center ">
       <div
-        className="max-w-lg bg-white flex-1 rounded-2xl shadow-card p-8"
+        className={`${width} bg-white flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
         ref={modalRef}
         tabIndex="-1"
         role="dialog"

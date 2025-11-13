@@ -25,7 +25,7 @@ const SentMsgContent = ({
   const { icon: Icon, iconStyle, bgStyle, iconTitle } = MODAL_TYPE[varient];
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center px-8">
       <div className={`${bgStyle} p-3 rounded-full`}>
         <Icon className={`${iconStyle} text-6xl`} title={iconTitle} />
       </div>

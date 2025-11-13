@@ -27,7 +27,19 @@ h6 {
 p {
   font-family: "Poppins", sans-serif;
 }
-
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+.hide-track::-webkit-scrollbar {
+  width: 12px; /* still needed to show thumb */
+  margin-left: 12px;
+}
+
+.hide-track::-webkit-scrollbar-track {
+  background: transparent; /* hide track */
+}
+
+.hide-track::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400); /* thumb color */
+  border-radius: 50px;
 }
