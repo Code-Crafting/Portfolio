@@ -9,7 +9,7 @@ import Contact from "./pages/Contact";
 
 function App() {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex relative">
       {/* aside */}
       <Aside />
       {/* main content */}
