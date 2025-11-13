@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { pagesOptions } from "../constants/pagesOptions";
 import PagesLink from "../ui/links/PagesLink";
 import { Link } from "react-router";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const PagesOptions = () => {
-  const [currentSec, setCurrentSec] = useState(1);
+  const [currentPage, setCurrentPage] = useLocalStorage("currentPage", 1);
 
   const handleKeyDown = (e, optionId) => {
     if (e.key === "Enter" || e.key === " ") {
-      setCurrentSec(optionId);
+      setCurrentPage(optionId);
     }
   };
 
@@ -19,17 +19,17 @@ const PagesOptions = () => {
           <li key={option.id}>
             <Link
               to={option.link}
-              onClick={() => setCurrentSec(option.id)}
+              onClick={() => setCurrentPage(option.id)}
               onKeyDown={(e) => handleKeyDown(e, option.id)}
               className={`block p-3 ${
-                option.id === currentSec ? "bg-gray-300" : ""
+                option.id === currentPage ? "bg-gray-300" : ""
               }  rounded-md`}
             >
               <PagesLink
                 icon={option.icon}
                 text={option.text}
                 currentSecColor={
-                  option.id === currentSec
+                  option.id === currentPage
                     ? "text-textPrimary"
                     : "text-textSecondary"
                 }

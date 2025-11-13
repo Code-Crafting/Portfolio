@@ -8,7 +8,7 @@ import { FormContext } from "../contexts/formContext";
 import InputError from "../ui/form/InputError";
 import emailjs from "@emailjs/browser";
 import Button from "../ui/Button";
-import SentMsgContent from "../ui/modal/SentMsgContent";
+import SentMsgContent from "./SentMsgContent";
 import Modal from "../ui/modal/Modal";
 import { modalConfig } from "../constants/modalConfig";
 
