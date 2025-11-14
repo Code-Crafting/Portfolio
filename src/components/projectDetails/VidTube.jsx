@@ -3,6 +3,10 @@ import ProjectSubheading from "./ProjectSubheading";
 import ProjectContent from "./ProjectContent";
 import Tech from "../../ui/Tech";
 import { filterProject } from "../../lib/filterProject";
+import PostList from "../../ui/PostList";
+import Video from "../../ui/Video";
+import vidTubeVideo from "../../assets/videos/VidTube.mp4";
+import vidTubePoster from "../../assets/videoProster/vidTubePoster.png";
 
 const VidTube = ({ projectId }) => {
   const { techStack } = filterProject(projectId)[0];
@@ -14,23 +18,18 @@ const VidTube = ({ projectId }) => {
         <div className="mb-2">
           <ProjectSubheading emoji="⚡" text="Key Features" />
         </div>
-        {vitTubeDetails.keyFeatures.map((feature, i) => {
-          return (
-            <p key={i} className="text-lg text-textSecondary">
-              <span className="text-xl mr-2">{feature.emoji}</span>
-              {feature.feature}
-            </p>
-          );
-        })}
+        {vitTubeDetails.keyFeatures.map((feature, i) => (
+          <PostList key={i} emoji={feature.emoji} text={feature.feature} />
+        ))}
       </ProjectContent>
 
       {/* custom hooks */}
       <ProjectContent>
         <div className="flex gap-2 items-center">
-          <ProjectSubheading emoji="🧩" text="Custom Hooks:" />
+          <ProjectSubheading emoji="🧩" text="Custom Hooks:" mb={false} />
           {vitTubeDetails.customHooks.map((hook, i) => {
             return (
-              <p key={i} className="text-xl text-textSecondary">
+              <p key={i} className="text-lg text-textSecondary">
                 {hook}
               </p>
             );
@@ -42,23 +41,27 @@ const VidTube = ({ projectId }) => {
       <ProjectContent>
         <ProjectSubheading emoji="💡" text="Optimization Steps I Implemented" />
 
-        {vitTubeDetails.optimizations.map((optimization, i) => {
-          return (
-            <p key={i} className="text-lg text-textSecondary">
-              <span className="text-xl mr-2">{optimization.emoji}</span>
-              {optimization.text}
-            </p>
-          );
-        })}
+        {vitTubeDetails.optimizations.map((optimization, i) => (
+          <PostList
+            key={i}
+            emoji={optimization.emoji}
+            text={optimization.text}
+          />
+        ))}
       </ProjectContent>
 
       <ProjectContent>
         <div className="flex gap-3 items-center">
-          <ProjectSubheading emoji="⚙️" text="Tech Stack:" />
+          <ProjectSubheading emoji="⚙️" text="Tech Stack:" mb={false} />
           {techStack.map((tech, i) => {
             return <Tech key={i} tech={tech} fontSize="text-lg" />;
           })}
         </div>
+      </ProjectContent>
+
+      {/* video */}
+      <ProjectContent>
+        <Video src={vidTubeVideo} poster={vidTubePoster} />
       </ProjectContent>
     </>
   );

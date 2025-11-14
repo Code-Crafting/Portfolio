@@ -1,6 +1,6 @@
-const ProjectSubheading = ({ emoji, text }) => {
+const ProjectSubheading = ({ emoji, text, mb = true }) => {
   return (
-    <h4 className="text-xl font-semibold">
+    <h4 className={`text-xl font-semibold ${mb ? "mb-2" : ""}`}>
       <span className="text-2xl">{emoji}</span> {text}
     </h4>
   );

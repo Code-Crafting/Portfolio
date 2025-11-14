@@ -8,10 +8,14 @@ import Modal from "../ui/modal/Modal";
 import CloseBtn from "../ui/CloseBtn";
 import VidTube from "../components/projectDetails/VidTube";
 import ProjectDetails from "../components/projectDetails/ProjectDetails";
+import PhotoFix from "../components/projectDetails/PhotoFix";
+import { filterProject } from "../lib/filterProject";
 
 const Projects = () => {
   const [showProjectDetails, setShowProjectDetials] = useState(true);
   const [modal, setModal] = useState({ show: false, projectId: "" });
+  const projectTitle =
+    modal.projectId && filterProject(modal.projectId)[0].title;
   return (
     <>
       <Section label="projects">
@@ -52,7 +56,11 @@ const Projects = () => {
             {/* content */}
             <div className="h-[500px] overflow-y-auto hide-track mt-2 px-2">
               <ProjectDetails projectId={modal.projectId}>
-                <VidTube projectId={modal.projectId} />
+                {projectTitle === "VidTube" ? (
+                  <VidTube projectId={modal.projectId} />
+                ) : (
+                  <PhotoFix projectId={modal.projectId} />
+                )}
               </ProjectDetails>
             </div>
           </div>
