@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import ModalFooter from "./ModalFooter";
 import { useEffect, useRef } from "react";
+import { motion } from "motion/react";
 
 const Modal = ({ children, width = "max-w-lg" }) => {
   const modalRef = useRef(null);
@@ -42,8 +43,17 @@ const Modal = ({ children, width = "max-w-lg" }) => {
   }, []);
 
   return createPortal(
-    <div className="absolute inset-0 bg-gray-700/50 backdrop-blur-sm w-full h-screen flex items-center justify-center ">
-      <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="absolute inset-0 bg-gray-700/50 backdrop-blur-sm w-full h-screen flex items-center justify-center "
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
         className={`${width} bg-white flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
         ref={modalRef}
         tabIndex="-1"
@@ -57,8 +67,8 @@ const Modal = ({ children, width = "max-w-lg" }) => {
 
         {/* footer */}
         <ModalFooter />
-      </div>
-    </div>,
+      </motion.div>
+    </motion.div>,
     document.getElementById("modal")
   );
 };

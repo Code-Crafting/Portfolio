@@ -10,6 +10,7 @@ import VidTube from "../components/projectDetails/VidTube";
 import ProjectDetails from "../components/projectDetails/ProjectDetails";
 import PhotoFix from "../components/projectDetails/PhotoFix";
 import { filterProject } from "../lib/filterProject";
+import { AnimatePresence } from "motion/react";
 
 const Projects = () => {
   const [showProjectDetails, setShowProjectDetials] = useState(true);
@@ -25,47 +26,51 @@ const Projects = () => {
           setterFnc={setShowProjectDetials}
         />
 
-        {showProjectDetails && (
-          <DetailsArea>
-            <div className="space-y-4">
-              {projectsDetails.map((project) => {
-                return (
-                  <ProjectCard
-                    key={project.id}
-                    projectData={project}
-                    setProjectId={() =>
-                      setModal({ show: true, projectId: project.id })
-                    }
-                  />
-                );
-              })}
-            </div>
-          </DetailsArea>
-        )}
+        <AnimatePresence initial={false}>
+          {showProjectDetails && (
+            <DetailsArea>
+              <div className="space-y-6">
+                {projectsDetails.map((project) => {
+                  return (
+                    <ProjectCard
+                      key={project.id}
+                      projectData={project}
+                      setProjectId={() =>
+                        setModal({ show: true, projectId: project.id })
+                      }
+                    />
+                  );
+                })}
+              </div>
+            </DetailsArea>
+          )}
+        </AnimatePresence>
       </Section>
 
-      {modal.show && (
-        <Modal width="max-w-5xl">
-          <div>
-            {/* closeBtn */}
-            <CloseBtn
-              size="text-3xl"
-              onClick={() => setModal({ show: false, projectid: "" })}
-            />
+      <AnimatePresence>
+        {modal.show && (
+          <Modal width="max-w-5xl">
+            <div>
+              {/* closeBtn */}
+              <CloseBtn
+                size="text-3xl"
+                onClick={() => setModal({ show: false, projectid: "" })}
+              />
 
-            {/* content */}
-            <div className="h-[500px] overflow-y-auto hide-track mt-2 px-2">
-              <ProjectDetails projectId={modal.projectId}>
-                {projectTitle === "VidTube" ? (
-                  <VidTube projectId={modal.projectId} />
-                ) : (
-                  <PhotoFix projectId={modal.projectId} />
-                )}
-              </ProjectDetails>
+              {/* content */}
+              <div className="h-[500px] overflow-y-auto hide-track mt-2 px-2">
+                <ProjectDetails projectId={modal.projectId}>
+                  {projectTitle === "VidTube" ? (
+                    <VidTube projectId={modal.projectId} />
+                  ) : (
+                    <PhotoFix projectId={modal.projectId} />
+                  )}
+                </ProjectDetails>
+              </div>
             </div>
-          </div>
-        </Modal>
-      )}
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

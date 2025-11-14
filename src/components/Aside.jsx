@@ -1,14 +1,17 @@
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import Header from "./Header";
 import PagesOptions from "./PagesOptions";
 
 const Aside = () => {
+  const [currentPage, setCurrentPage] = useLocalStorage("currentPage", 1);
+
   return (
     <aside className="w-80 border-r border-gray-400/50 p-4 bg-lightPrimary text-Textsecondary">
       {/* header */}
-      <Header />
+      <Header setCurrentPage={setCurrentPage} />
 
       {/* page options */}
-      <PagesOptions />
+      <PagesOptions currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </aside>
   );
 };

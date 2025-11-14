@@ -11,6 +11,7 @@ import Button from "../ui/Button";
 import SentMsgContent from "./SentMsgContent";
 import Modal from "../ui/modal/Modal";
 import { modalConfig } from "../constants/modalConfig";
+import { AnimatePresence } from "motion/react";
 
 const ContactForm = () => {
   const { handleSubmit, errors, reset } = useContext(FormContext);
@@ -112,22 +113,24 @@ const ContactForm = () => {
         </p>
       </form>
 
-      {modal.show && (
-        <Modal>
-          <SentMsgContent
-            varient={modal.varient}
-            title={title}
-            subtitle={subtitle}
-          >
-            <Button
+      <AnimatePresence>
+        {modal.show && (
+          <Modal>
+            <SentMsgContent
               varient={modal.varient}
-              onClick={() => setModal((prev) => ({ ...prev, show: false }))}
+              title={title}
+              subtitle={subtitle}
             >
-              {buttonText}
-            </Button>
-          </SentMsgContent>
-        </Modal>
-      )}
+              <Button
+                varient={modal.varient}
+                onClick={() => setModal((prev) => ({ ...prev, show: false }))}
+              >
+                {buttonText}
+              </Button>
+            </SentMsgContent>
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

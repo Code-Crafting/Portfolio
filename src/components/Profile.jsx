@@ -2,10 +2,15 @@ import AnchorLink from "../ui/links/AnchorLink";
 import { FaLink } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
 import CV from "../assets/files/CV.pdf";
+import { motion } from "motion/react";
 
 const Profile = () => {
   return (
-    <section aria-label="profile">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      aria-label="profile"
+    >
       <div className="flex items-center gap-2">
         {/* icon */}
         <p className=" text-8xl ">🧑‍💻</p>
@@ -30,7 +35,7 @@ const Profile = () => {
           label="Download CV"
         />
       </div>
-    </section>
+    </motion.section>
   );
 };
 
