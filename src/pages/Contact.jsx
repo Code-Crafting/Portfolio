@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Section from "../ui/Section";
+import Section from "../ui/tags/Section";
 import SectionHeading from "../ui/SectionHeading";
 import DetailsArea from "../ui/DetailsArea";
 import SubHeading from "../ui/SubHeading";

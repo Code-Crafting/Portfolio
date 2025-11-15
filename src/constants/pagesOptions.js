@@ -3,6 +3,9 @@ import { FiUser } from "react-icons/fi";
 import { LuAward } from "react-icons/lu";
 import { IoMdCode } from "react-icons/io";
 import { MdMailOutline } from "react-icons/md";
+import { GiTicTacToe } from "react-icons/gi";
+import { VscSnake } from "react-icons/vsc";
+import { LuBrain } from "react-icons/lu";
 
 export const pagesOptions = [
   { id: 1, icon: LuHouse, text: "Home", link: "/" },
@@ -30,4 +33,7 @@ export const pagesOptions = [
     text: "Contact",
     link: "/contact",
   },
+  { id: 6, icon: GiTicTacToe, text: "TicTacToe", link: "/tictactoe" },
+  { id: 7, icon: VscSnake, text: "Snake Game", link: "/snake" },
+  { id: 8, icon: LuBrain, text: "Memory Game", link: "/memory" },
 ];

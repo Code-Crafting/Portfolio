@@ -1,10 +1,28 @@
 import AnchorLink from "../ui/links/AnchorLink";
-import { FaLink } from "react-icons/fa";
+import { BsFillShareFill } from "react-icons/bs";
+
 import { FaDownload } from "react-icons/fa6";
 import CV from "../assets/files/CV.pdf";
 import { motion } from "motion/react";
 
 const Profile = () => {
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Monojit Sen — Frontend Developer",
+          text: "Check out his portfolio!",
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.log("Share Cancelled", error);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("link copied to clipboard!");
+    }
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -25,8 +43,17 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex gap-8 mt-4 pl-6">
-        <AnchorLink text="Share" icon={FaLink} label="Share portfoliio" />
+      <div className="flex gap-8 mt-4 pl-6 ">
+        {/* share btn */}
+        <button
+          className="flex gap-2 items-center cursor-pointer text text-textSecondary hover:text-gray-800"
+          onClick={handleShare}
+        >
+          <BsFillShareFill />
+          <p>Share</p>
+        </button>
+
+        {/* download cv */}
         <AnchorLink
           text="Download CV"
           addDownload={true}

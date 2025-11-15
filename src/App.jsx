@@ -1,29 +1,42 @@
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import Aside from "./components/Aside";
-import Profile from "./components/Profile";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
+import MainLayout from "./layout/MainLayout";
+import PlayGroundLayout from "./layout/PlayGroundLayout";
+import TicTacToe from "./components/games/TicTacToe";
+import Snake from "./components/games/Snake";
+import MemoryGame from "./components/games/MemoryGame";
 
 function App() {
   return (
     <div className="min-h-screen flex relative">
       {/* aside */}
       <Aside />
-      {/* main content */}
-      <main className="flex-1 max-w-7xl mx-auto pt-16 px-8 pb-4 overflow-y-auto h-screen no-scrollbar">
-        <Profile />
-        <Routes>
+
+      <Routes>
+        {/* Portfolio Layout */}
+        <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<div>Page Not Found</div>} />
-        </Routes>
-      </main>
+        </Route>
+
+        {/* Playground Layout */}
+        <Route element={<PlayGroundLayout />}>
+          <Route path="/tictactoe" element={<TicTacToe />} />
+          <Route path="/snake" element={<Snake />} />
+          <Route path="/memory" element={<MemoryGame />} />
+        </Route>
+
+        {/* 404 Fallback */}
+        <Route path="*" element={<div>Page Not Found</div>} />
+      </Routes>
     </div>
   );
 }

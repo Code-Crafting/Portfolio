@@ -3,7 +3,7 @@ import SectionHeading from "../ui/SectionHeading";
 import { personalInfo } from "../constants/personalInfo";
 import PersonalInfo from "../ui/PersonalInfo";
 import DetailsArea from "../ui/DetailsArea";
-import Section from "../ui/Section";
+import Section from "../ui/tags/Section";
 import { AnimatePresence, motion } from "motion/react";
 
 const About = () => {
