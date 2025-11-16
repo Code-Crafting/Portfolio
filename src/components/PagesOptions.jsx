@@ -1,7 +1,7 @@
 import { pagesOptions } from "../constants/pagesOptions";
 import PagesLink from "../ui/links/PagesLink";
 import { Link } from "react-router";
-import MotionLi from "../ui/MotionLi";
+import MotionLi from "../ui/animations/MotionLi";
 
 const PagesOptions = ({ currentPage, setCurrentPage, onKeyDown }) => {
   const pages = pagesOptions.slice(0, 5);

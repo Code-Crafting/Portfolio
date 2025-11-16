@@ -1,5 +1,5 @@
 import { pagesOptions } from "../constants/pagesOptions";
-import MotionLi from "../ui/MotionLi";
+import MotionLi from "../ui/animations/MotionLi";
 import { Link } from "react-router";
 import PagesLink from "../ui/links/PagesLink";
 

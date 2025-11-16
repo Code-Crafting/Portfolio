@@ -7,9 +7,11 @@ import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import MainLayout from "./layout/MainLayout";
 import PlayGroundLayout from "./layout/PlayGroundLayout";
-import TicTacToe from "./components/games/TicTacToe";
-import Snake from "./components/games/Snake";
-import MemoryGame from "./components/games/MemoryGame";
+import { lazy, Suspense } from "react";
+
+const TicTacToe = lazy(() => import("./components/games/TicTacToe"));
+const Snake = lazy(() => import("./components/games/Snake"));
+const MemoryGame = lazy(() => import("./components/games/MemoryGame"));
 
 function App() {
   return (
@@ -28,10 +30,32 @@ function App() {
         </Route>
 
         {/* Playground Layout */}
+
         <Route element={<PlayGroundLayout />}>
-          <Route path="/tictactoe" element={<TicTacToe />} />
-          <Route path="/snake" element={<Snake />} />
-          <Route path="/memory" element={<MemoryGame />} />
+          <Route
+            path="/tictactoe"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <TicTacToe />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/snake"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <Snake />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/memory"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <MemoryGame />
+              </Suspense>
+            }
+          />
         </Route>
 
         {/* 404 Fallback */}

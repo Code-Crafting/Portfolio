@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import Section from "../ui/tags/Section";
 import SectionHeading from "../ui/SectionHeading";
 import DetailsArea from "../ui/DetailsArea";
 import { projectsDetails } from "../constants/projectDetails";
 import ProjectCard from "../components/ProjectCard";
-import Modal from "../ui/modal/Modal";
 import CloseBtn from "../ui/CloseBtn";
-import VidTube from "../components/projectDetails/VidTube";
 import ProjectDetails from "../components/projectDetails/ProjectDetails";
-import PhotoFix from "../components/projectDetails/PhotoFix";
 import { filterProject } from "../lib/filterProject";
 import { AnimatePresence } from "motion/react";
+import Modal from "../ui/modal/Modal";
+
+const VidTube = lazy(() => import("../components/projectDetails/VidTube"));
+const PhotoFix = lazy(() => import("../components/projectDetails/PhotoFix"));
 
 const Projects = () => {
   const [showProjectDetails, setShowProjectDetials] = useState(true);
@@ -60,11 +61,13 @@ const Projects = () => {
               {/* content */}
               <div className="h-[500px] overflow-y-auto hide-track mt-2 px-2">
                 <ProjectDetails projectId={modal.projectId}>
-                  {projectTitle === "VidTube" ? (
-                    <VidTube projectId={modal.projectId} />
-                  ) : (
-                    <PhotoFix projectId={modal.projectId} />
-                  )}
+                  <Suspense fallback={<p>Loading...</p>}>
+                    {projectTitle === "VidTube" ? (
+                      <VidTube projectId={modal.projectId} />
+                    ) : (
+                      <PhotoFix projectId={modal.projectId} />
+                    )}
+                  </Suspense>
                 </ProjectDetails>
               </div>
             </div>
