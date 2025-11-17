@@ -7,13 +7,13 @@ const PersonalInfo = ({ infoData }) => {
         <p className="text-textSecondary">{title}:</p>
         {link ? (
           <a href={link} target="_blank" rel="noopener noreferrer">
-            <p className="font-semibold hover:text-blue-800">
+            <p className="text-textPrimary font-semibold hover:text-blue-800">
               {subtitle}
               ↗️
             </p>
           </a>
         ) : (
-          <p className="font-semibold">{subtitle}</p>
+          <p className="text-textPrimary font-semibold">{subtitle}</p>
         )}
       </div>
     </div>

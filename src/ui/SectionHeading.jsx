@@ -39,7 +39,9 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
 
       <div className="flex gap-1 items-center">
         <p className="text-3xl">{emoji}</p>
-        <h2 className="capitalize text-2xl font-bold traking-wide">{title}</h2>
+        <h2 className="text-textPrimary capitalize text-2xl font-bold traking-wide">
+          {title}
+        </h2>
       </div>
     </div>
   );

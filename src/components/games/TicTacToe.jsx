@@ -6,6 +6,8 @@ import Cell from "../../ui/tictactoe/Cell";
 import { useTicTacToe } from "../../hooks/useTicTacToe";
 import StagerFadeUp from "../../ui/animations/StagerFadeUp";
 import FadeUp from "../../ui/animations/FadeUp";
+import GameHeader from "../../ui/GameHeader";
+import GameSubheader from "../../ui/GameSubheader";
 
 export default function TicTacToe() {
   const {
@@ -28,12 +30,8 @@ export default function TicTacToe() {
       <div className="w-[80%] mx-auto">
         {/* Header */}
         <FadeUp className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
-            <span className="text-4xl">⭕</span>
-            TicTacToe
-            <span className="text-4xl">❌</span>
-          </h1>
-          <p className="text-gray-600 text-lg">Challenge your friend!</p>
+          <GameHeader title="TicTacToe" emoji={["⭕", "❌"]} />
+          <GameSubheader text="Challenge your friend!" />
         </FadeUp>
 
         <div className="flex w-full gap-8">
@@ -81,7 +79,10 @@ export default function TicTacToe() {
             >
               {winner ? (
                 <div className="flex items-center justify-center gap-2 text-xl font-semibold">
-                  <LuTrophy className="text-yellow-500 text-lg" />
+                  <LuTrophy
+                    className="text-yellow-500 text-lg"
+                    title="trophy"
+                  />
                   <span className="text-gray-800">
                     Player {winner.winner} Wins!
                   </span>
@@ -103,7 +104,7 @@ export default function TicTacToe() {
             {/* Action Buttons */}
             <StagerFadeUp delay={0.3} className="flex gap-3">
               <Button onClick={resetGame}>
-                <LuRotateCw className="text-lg" />
+                <LuRotateCw className="text-lg" title="rotate" />
                 New Game
               </Button>
 

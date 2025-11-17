@@ -1,6 +1,5 @@
 import AnchorLink from "../ui/links/AnchorLink";
 import { BsFillShareFill } from "react-icons/bs";
-
 import { FaDownload } from "react-icons/fa6";
 import CV from "../assets/files/CV.pdf";
 import { motion } from "motion/react";
@@ -35,7 +34,9 @@ const Profile = () => {
 
         {/* details */}
         <div>
-          <h1 className="text-4xl font-bold tracking-wide">Monojit Sen</h1>
+          <h1 className="text-textPrimary text-4xl font-bold tracking-wide">
+            Monojit Sen
+          </h1>
           <p className="text-textSecondary text-xl mt-1">Frontend Developer</p>
           <p className="text-textSecondary mt-1.5">
             ReactJS | JavaScript | TailwindCSS

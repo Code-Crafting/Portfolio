@@ -54,7 +54,7 @@ const Modal = ({ children, width = "max-w-lg" }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className={`${width} bg-white flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
+        className={`${width} relative bg-white flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
         ref={modalRef}
         tabIndex="-1"
         role="dialog"

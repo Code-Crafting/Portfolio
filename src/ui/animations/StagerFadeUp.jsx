@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-const StagerFadeUp = ({ children, delay, ...props }) => {
+const StagerFadeUp = ({ children, delay = 0.1, ...props }) => {
   return (
     <motion.div
       initial={{ y: 30, opacity: 0 }} // Start lower + invisible

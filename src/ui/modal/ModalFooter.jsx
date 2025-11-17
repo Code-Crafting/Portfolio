@@ -3,7 +3,7 @@ import { socialLinks } from "../../constants/socialLinks";
 const ModalFooter = () => {
   return (
     <div className="flex flex-col justify-center items-center">
-      <p className="text-textSecondary text-lg">Or connect with me on</p>
+      <p className="text-textSecondary text-lg">Connect with me on</p>
       <ul className="flex gap-2 mt-4">
         {socialLinks.map((socilaLink) => {
           const {

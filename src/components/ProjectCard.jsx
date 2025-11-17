@@ -21,7 +21,7 @@ const ProjectCard = ({ projectData, setProjectId }) => {
 
       <div className="">
         {/* title */}
-        <h3 className="text-xl font-bold">{title}</h3>
+        <h3 className="text-textPrimary text-xl font-bold">{title}</h3>
 
         {/* description */}
         <p className="text-textSecondary text-lg mt-1 ">

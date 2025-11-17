@@ -7,7 +7,8 @@ import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import MainLayout from "./layout/MainLayout";
 import PlayGroundLayout from "./layout/PlayGroundLayout";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
+import LazyWrapper from "./components/LazyWrapper";
 
 const TicTacToe = lazy(() => import("./components/games/TicTacToe"));
 const Snake = lazy(() => import("./components/games/Snake"));
@@ -30,30 +31,29 @@ function App() {
         </Route>
 
         {/* Playground Layout */}
-
         <Route element={<PlayGroundLayout />}>
           <Route
             path="/tictactoe"
             element={
-              <Suspense fallback={<p>Loading...</p>}>
+              <LazyWrapper>
                 <TicTacToe />
-              </Suspense>
+              </LazyWrapper>
             }
           />
           <Route
             path="/snake"
             element={
-              <Suspense fallback={<p>Loading...</p>}>
+              <LazyWrapper>
                 <Snake />
-              </Suspense>
+              </LazyWrapper>
             }
           />
           <Route
             path="/memory"
             element={
-              <Suspense fallback={<p>Loading...</p>}>
+              <LazyWrapper>
                 <MemoryGame />
-              </Suspense>
+              </LazyWrapper>
             }
           />
         </Route>

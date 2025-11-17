@@ -12,7 +12,6 @@ const Video = ({
       loop={loop ? true : false}
       muted={muted ? true : false}
       className="w-full aspect-video"
-      controls
       aria-hidden="true"
     />
   );

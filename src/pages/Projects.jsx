@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, useState } from "react";
 import Section from "../ui/tags/Section";
 import SectionHeading from "../ui/SectionHeading";
 import DetailsArea from "../ui/DetailsArea";
@@ -9,6 +9,7 @@ import ProjectDetails from "../components/projectDetails/ProjectDetails";
 import { filterProject } from "../lib/filterProject";
 import { AnimatePresence } from "motion/react";
 import Modal from "../ui/modal/Modal";
+import LazyWrapper from "../components/LazyWrapper";
 
 const VidTube = lazy(() => import("../components/projectDetails/VidTube"));
 const PhotoFix = lazy(() => import("../components/projectDetails/PhotoFix"));
@@ -61,13 +62,13 @@ const Projects = () => {
               {/* content */}
               <div className="h-[500px] overflow-y-auto hide-track mt-2 px-2">
                 <ProjectDetails projectId={modal.projectId}>
-                  <Suspense fallback={<p>Loading...</p>}>
+                  <LazyWrapper>
                     {projectTitle === "VidTube" ? (
                       <VidTube projectId={modal.projectId} />
                     ) : (
                       <PhotoFix projectId={modal.projectId} />
                     )}
-                  </Suspense>
+                  </LazyWrapper>
                 </ProjectDetails>
               </div>
             </div>
