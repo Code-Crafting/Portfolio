@@ -91,7 +91,7 @@ const MemoryGame = () => {
   const isGameWon = matches === 8;
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="w-[60%] mx-auto">
         {/* Header */}
         <FadeUp className="text-center mb-8">
