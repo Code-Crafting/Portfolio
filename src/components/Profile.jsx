@@ -28,29 +28,31 @@ const Profile = () => {
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
       aria-label="profile"
     >
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col 450px:flex-row items-center 450px:gap-2">
         {/* icon */}
-        <p className=" text-8xl ">🧑‍💻</p>
+        <p className="lg:text-8xl 450px:text-7xl text-8xl text-center">🧑‍💻</p>
 
         {/* details */}
-        <div>
-          <h1 className="text-textPrimary text-4xl font-bold tracking-wide">
+        <div className="text-center 450px:text-left">
+          <h1 className="text-textPrimary lg:text-4xl text-3xl font-bold tracking-wide">
             Monojit Sen
           </h1>
-          <p className="text-textSecondary text-xl mt-1">Frontend Developer</p>
-          <p className="text-textSecondary mt-1.5">
+          <p className="text-textSecondary lg:text-xl text-lg lg:mt-1 mt-0.5">
+            Frontend Developer
+          </p>
+          <p className="text-textSecondary lg:mt-1.5 mt-1">
             ReactJS | JavaScript | TailwindCSS
           </p>
         </div>
       </div>
 
-      <div className="flex gap-8 mt-4 pl-6 ">
+      <div className="flex 450px:gap-8 gap-4 mt-4 450px:pl-6 justify-center 450px:justify-start">
         {/* share btn */}
         <button
-          className="flex gap-2 items-center cursor-pointer text text-textSecondary hover:text-gray-800"
+          className="flex gap-2 items-center cursor-pointer text-sm lg:text-md  text-textSecondary hover:text-gray-800"
           onClick={handleShare}
         >
-          <BsFillShareFill />
+          <BsFillShareFill title="share" />
           <p>Share</p>
         </button>
 

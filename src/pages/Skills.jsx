@@ -16,18 +16,18 @@ const Skills = () => {
       <AnimatePresence initial={false}>
         {showSkills && (
           <DetailsArea>
-            <div className="space-y-8">
+            <div className="sm:space-y-8 space-y-6">
               {skillsData.map((skill) => {
                 return (
-                  <div key={skill.id} className="space-y-3">
-                    <p className="font-medium text-lg text-gray-700">
+                  <div key={skill.id} className="lg:space-y-3 space-y-2">
+                    <p className="font-medium lg:text-lg text-gray-700">
                       {skill.title}
                     </p>
                     <ul className="flex gap-4">
                       {skill.skills.map((s, i) => {
                         return (
                           <li key={i}>
-                            <Tech tech={s} fontSize="text-lg" />
+                            <Tech tech={s} fontSize="lg:text-lg text-md" />
                           </li>
                         );
                       })}

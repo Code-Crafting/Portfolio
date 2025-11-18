@@ -19,18 +19,18 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
   };
   return (
     <div
-      className={`flex items-center gap-3 ${
+      className={`flex items-center lg:gap-3 gap-2 ${
         pathname === "/"
-          ? "hover:bg-gray-200 transition duration-300 ease-in-out cursor-pointer px-2 py-4"
+          ? "hover:bg-gray-200 transition duration-300 ease-in-out cursor-pointer px-2 sm:py-4 py-2"
           : ""
-      }   mt-12 rounded-md`}
-      onClick={handleDropdown}
-      onKeyDown={handleDropdownOnKeyDown}
+      }   lg:mt-12 mt-8 rounded-md`}
+      onClick={pathname === "/" ? handleDropdown : () => {}}
+      onKeyDown={pathname === "/" ? handleDropdownOnKeyDown : () => {}}
       {...(pathname === "/" ? { tabIndex: 0 } : {})}
     >
       {pathname === "/" && (
         <RiArrowDownSLine
-          className={`text-3xl text-textPrimary ${
+          className={`sm:block hidden lg:text-3xl text-2xl text-textPrimary ${
             rotate ? "-rotate-90" : ""
           } transition ease-linear duration-150`}
           title="dropdown"
@@ -38,11 +38,20 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
       )}
 
       <div className="flex gap-1 items-center">
-        <p className="text-3xl">{emoji}</p>
-        <h2 className="text-textPrimary capitalize text-2xl font-bold traking-wide">
+        <p className="lg:text-3xl text-2xl">{emoji}</p>
+        <h2 className="text-textPrimary capitalize lg:text-2xl text-xl font-bold traking-wide">
           {title}
         </h2>
       </div>
+
+      {pathname === "/" && (
+        <RiArrowDownSLine
+          className={`sm:hidden block lg:text-3xl text-2xl text-textPrimary ${
+            rotate ? "rotate-90" : ""
+          } transition ease-linear duration-150`}
+          title="dropdown"
+        />
+      )}
     </div>
   );
 };

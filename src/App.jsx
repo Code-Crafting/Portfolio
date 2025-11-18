@@ -9,6 +9,7 @@ import MainLayout from "./layout/MainLayout";
 import PlayGroundLayout from "./layout/PlayGroundLayout";
 import { lazy } from "react";
 import LazyWrapper from "./components/LazyWrapper";
+import Navbar from "./components/Navbar";
 
 const TicTacToe = lazy(() => import("./components/games/TicTacToe"));
 const Snake = lazy(() => import("./components/games/Snake"));
@@ -16,10 +17,10 @@ const MemoryGame = lazy(() => import("./components/games/MemoryGame"));
 
 function App() {
   return (
-    <div className="min-h-screen flex relative">
+    <div className="min-h-screen 850px:flex relative">
       {/* aside */}
       <Aside />
-
+      <Navbar /> {/* only visible before 850px */}
       <Routes>
         {/* Portfolio Layout */}
         <Route element={<MainLayout />}>

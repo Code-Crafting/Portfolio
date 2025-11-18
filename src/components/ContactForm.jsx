@@ -16,14 +16,13 @@ import { AnimatePresence } from "motion/react";
 const ContactForm = () => {
   const { handleSubmit, errors, reset } = useContext(FormContext);
   const [isSending, setIsSending] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
   const [modal, setModal] = useState({
     show: false,
     varient: "success",
   });
   const { title, subtitle, buttonText } = modalConfig[modal.varient];
   const inputCommonStyle =
-    "w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg placeholder:text-gary-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
+    "w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg  placeholder:text-gary-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
 
   // API Keys
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -108,7 +107,7 @@ const ContactForm = () => {
           )}
         </Button>
 
-        <p className="text-sm text-textSecondary text-center">
+        <p className="450px:text-sm text-[12px] text-textSecondary text-center">
           I'll get back to you within 24-48 hours 🚀
         </p>
       </form>

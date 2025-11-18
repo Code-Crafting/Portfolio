@@ -15,7 +15,7 @@ const Section = ({ label, children }) => {
         damping: 16,
       }}
       aria-label={label}
-      className={`${pathname !== "/" ? "pl-6" : ""}`}
+      className={`${pathname !== "/" ? "sm:pl-6 pl-2" : ""}`}
     >
       {children}
     </motion.section>

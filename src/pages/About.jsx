@@ -20,7 +20,7 @@ const About = () => {
       <AnimatePresence initial={false}>
         {showAboutDetails && (
           <DetailsArea>
-            <p className="text-lg text-textSecondary tracking-wider">
+            <p className="lg:text-lg text-textSecondary tracking-wider">
               I’m Monojit Sen, a self-taught Frontend Developer currently
               pursuing a B.Com degree from Calcutta University. <br />
               Even with a non-technical background, my curiosity for technology
@@ -30,7 +30,7 @@ const About = () => {
               helps me grow and think more creatively as a developer.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <div className="grid xl:grid-cols-2 grid-cols-1 gap-4 mt-8">
               {personalInfo.map((info) => {
                 return <PersonalInfo key={info.id} infoData={info} />;
               })}

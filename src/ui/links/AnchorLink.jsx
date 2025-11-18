@@ -17,7 +17,7 @@ const AnchorLink = ({
       rel="noopener noreferrer"
       aria-label={label}
     >
-      <div className="flex gap-2 items-center cursor-pointer group">
+      <div className="flex gap-2 items-center cursor-pointer group text-sm lg:text-md">
         {Icon && <Icon className={color} title={iconItile} />}
         <p className={`${color} ${textSize}`}>{text}</p>
       </div>

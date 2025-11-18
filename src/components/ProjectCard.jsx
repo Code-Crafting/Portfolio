@@ -11,23 +11,25 @@ const ProjectCard = ({ projectData, setProjectId }) => {
     }
   };
   return (
-    <div className="border border-gray-300 rounded-md p-6 grid grid-cols-[80px_1fr] gap-6">
+    <div className="border border-gray-300 rounded-md lg:p-6 p-4 sm:grid lg:grid-cols-[80px_1fr] sm:grid-cols-[60px_1fr] lg:gap-6 gap-4">
       {/* logo */}
       <div
-        className={`aspect-square grid place-items-center rounded-md text-5xl ${gradient}`}
+        className={`450px:w-20 w-15 mb-2 sm:w-auto aspect-square grid place-items-center rounded-md lg:text-5xl text-4xl ${gradient}`}
       >
         {emoji}
       </div>
 
-      <div className="">
+      <div>
         {/* title */}
-        <h3 className="text-textPrimary text-xl font-bold">{title}</h3>
+        <h3 className="text-textPrimary lg:text-xl text-lg font-bold">
+          {title}
+        </h3>
 
         {/* description */}
-        <p className="text-textSecondary text-lg mt-1 ">
+        <p className="text-textSecondary lg:text-lg mt-1 ">
           {shortDescription(description)}...
           <span
-            className="text-blue-500 cursor-pointer text-md"
+            className="text-blue-500 cursor-pointer lg:text-md text-sm"
             tabIndex={0}
             onKeyDown={handleReadMore}
             onClick={setProjectId}
@@ -37,7 +39,7 @@ const ProjectCard = ({ projectData, setProjectId }) => {
         </p>
 
         {/* tech stack */}
-        <div className="flex items-center gap-2 mt-2">
+        <div className="flex flex-wrap items-center gap-2 mt-2">
           {techStack.map((tech, i) => {
             return <Tech key={i} tech={tech} />;
           })}
