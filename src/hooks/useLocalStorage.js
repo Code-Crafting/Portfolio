@@ -5,7 +5,8 @@ export const useLocalStorage = (key, initialValue = "") => {
 
   //   check whether the given key is present in the local storage
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem(key))) {
+    const storedValue = JSON.parse(localStorage.getItem(key));
+    if (storedValue !== null) {
       setValue(JSON.parse(localStorage.getItem(key)));
     } else {
       localStorage.setItem(key, JSON.stringify(value));

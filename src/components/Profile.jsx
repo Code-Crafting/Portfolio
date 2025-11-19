@@ -49,7 +49,7 @@ const Profile = () => {
       <div className="flex 450px:gap-8 gap-4 mt-4 450px:pl-6 justify-center 450px:justify-start">
         {/* share btn */}
         <button
-          className="flex gap-2 items-center cursor-pointer text-sm lg:text-md  text-textSecondary hover:text-gray-800"
+          className="flex gap-2 items-center cursor-pointer text-sm lg:text-lg  text-textSecondary hover:text-gray-800"
           onClick={handleShare}
         >
           <BsFillShareFill title="share" />

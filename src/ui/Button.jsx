@@ -4,7 +4,7 @@ const Button = ({
   disabled = false,
   varient = "primary",
   onClick = () => {},
-  width = "w-full",
+  width = "",
 }) => {
   const BTN_VARIANT = {
     primary: "bg-blue-600 hover:bg-blue-700 text-white",

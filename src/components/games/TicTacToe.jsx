@@ -1,5 +1,5 @@
 import { TbUsers } from "react-icons/tb";
-import { LuTrophy, LuRotateCw } from "react-icons/lu";
+import { LuTrophy } from "react-icons/lu";
 import Scores from "../../ui/tictactoe/Scores";
 import Button from "../../ui/Button";
 import Cell from "../../ui/tictactoe/Cell";
@@ -8,6 +8,7 @@ import StagerFadeUp from "../../ui/animations/StagerFadeUp";
 import FadeUp from "../../ui/animations/FadeUp";
 import GameHeader from "../../ui/GameHeader";
 import GameSubheader from "../../ui/GameSubheader";
+import ActionsBtnTicTacToe from "../ActionsBtnTicTacToe";
 
 export default function TicTacToe() {
   const {
@@ -27,16 +28,16 @@ export default function TicTacToe() {
 
   return (
     <div className="flex items-center justify-center p-4">
-      <div className="w-[80%] mx-auto">
+      <div className="sm:w-[80%] w-full mx-auto">
         {/* Header */}
         <FadeUp className="text-center mb-8">
           <GameHeader title="TicTacToe" emoji={["⭕", "❌"]} />
           <GameSubheader text="Challenge your friend!" />
         </FadeUp>
 
-        <div className="flex w-full gap-8">
+        <div className="flex xl:flex-row flex-col w-full xl:gap-8 gap-6">
           {/* Game Board */}
-          <FadeUp className="flex-1 bg-white rounded-2xl p-6 mb-6 shadow-md border border-gray-200">
+          <FadeUp className="sm:w-2/3 450px:w-4/5 w-full xl:w-1/2 order-2 xl:order-1 mx-auto bg-white rounded-2xl p-6 shadow-md border border-gray-200">
             <div className="grid grid-cols-3 gap-3">
               {board.map((cell, index) => (
                 <Cell
@@ -54,11 +55,11 @@ export default function TicTacToe() {
             </div>
           </FadeUp>
 
-          <div className="flex-1 my-auto">
+          <div className="450px:w-4/5 w-full xl:w-1/2 order-1 xl:order-2 mx-auto my-auto xl:space-y-4">
             {/* Score Board */}
             <StagerFadeUp
               delay={0.1}
-              className="bg-white rounded-2xl p-4 mb-6 shadow-md border border-gray-200"
+              className="bg-white rounded-2xl p-4  shadow-md border border-gray-200 mb-4 "
             >
               <div className="flex justify-around items-center">
                 {/* player X */}
@@ -75,7 +76,7 @@ export default function TicTacToe() {
             {/* Game Status */}
             <StagerFadeUp
               delay={0.2}
-              className="bg-white rounded-2xl p-4 mb-6 shadow-md border border-gray-200 text-center"
+              className="bg-white rounded-2xl p-4 shadow-md border border-gray-200 text-center"
             >
               {winner ? (
                 <div className="flex items-center justify-center gap-2 text-xl font-semibold">
@@ -102,17 +103,21 @@ export default function TicTacToe() {
             </StagerFadeUp>
 
             {/* Action Buttons */}
-            <StagerFadeUp delay={0.3} className="flex gap-3">
-              <Button onClick={resetGame}>
-                <LuRotateCw className="text-lg" title="rotate" />
-                New Game
-              </Button>
 
-              <Button onClick={resetScores} varient="error">
-                Reset Scores
-              </Button>
-            </StagerFadeUp>
+            <ActionsBtnTicTacToe
+              resetGame={resetGame}
+              resetScores={resetScores}
+              className="xl:flex hidden justify-center gap-3"
+            />
           </div>
+
+          {/* Action Buttons only before xl*/}
+
+          <ActionsBtnTicTacToe
+            resetGame={resetGame}
+            resetScores={resetScores}
+            className="xl:hidden flex justify-center order-3 lg:w-1/2 w-full mx-auto gap-3"
+          />
         </div>
       </div>
     </div>

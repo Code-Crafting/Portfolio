@@ -1,9 +1,17 @@
 const GameHeader = ({ title, emoji = [] }) => {
   return (
-    <h1 className="text-5xl font-bold text-textPrimary mb-2 flex items-center justify-center gap-3">
-      {emoji.length ? <span className="text-4xl">{emoji[0]}</span> : ""}
+    <h1 className="lg:text-5xl text-4xl font-bold text-textPrimary lg:mb-2 mb-1 flex items-center justify-center gap-3">
+      {emoji.length ? (
+        <span className="lg:text-4xl text-3xl">{emoji[0]}</span>
+      ) : (
+        ""
+      )}
       {title}
-      {emoji.length ? <span className="text-4xl">{emoji[1]}</span> : ""}
+      {emoji.length ? (
+        <span className="lg:text-4xl text-3xl">{emoji[1]}</span>
+      ) : (
+        ""
+      )}
     </h1>
   );
 };

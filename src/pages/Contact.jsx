@@ -21,7 +21,7 @@ const Contact = () => {
       <AnimatePresence initial={false}>
         {showContactDetails && (
           <DetailsArea>
-            <p className="text-gray-600 lg:mb-6 mb-4 lg:text-md text-sm">
+            <p className="text-gray-600 lg:mb-6 mb-4 lg:text-lg text-sm">
               Have a question or want to work together? Drop me a message!
             </p>
 

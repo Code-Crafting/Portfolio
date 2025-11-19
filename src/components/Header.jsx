@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import { CgMenu } from "react-icons/cg";
 
-const Header = ({ setCurrentPage, setShowMenu }) => {
+const Header = ({ setCurrentPage, setShowMenu = () => {} }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}

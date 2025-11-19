@@ -97,7 +97,11 @@ const ContactForm = () => {
         </div>
 
         {/* Submit Button */}
-        <Button disabled={isSending ? true : false} type="submit">
+        <Button
+          width="w-full"
+          disabled={isSending ? true : false}
+          type="submit"
+        >
           {isSending ? (
             <span>Your message is taking off... 🚀</span>
           ) : (
@@ -107,7 +111,7 @@ const ContactForm = () => {
           )}
         </Button>
 
-        <p className="450px:text-sm text-[12px] text-textSecondary text-center">
+        <p className="450px:text-sm text-[16px] text-textSecondary text-center">
           I'll get back to you within 24-48 hours 🚀
         </p>
       </form>
@@ -121,6 +125,7 @@ const ContactForm = () => {
               subtitle={subtitle}
             >
               <Button
+                width="w-full"
                 varient={modal.varient}
                 onClick={() => setModal((prev) => ({ ...prev, show: false }))}
               >

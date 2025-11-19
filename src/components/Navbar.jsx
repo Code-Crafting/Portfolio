@@ -47,6 +47,7 @@ const Navbar = () => {
               <PlayGround
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                setShowMenu={() => setShowMenu(false)}
               />
             </motion.div>
           )}

@@ -29,7 +29,7 @@ const ProjectCard = ({ projectData, setProjectId }) => {
         <p className="text-textSecondary lg:text-lg mt-1 ">
           {shortDescription(description)}...
           <span
-            className="text-blue-500 cursor-pointer lg:text-md text-sm"
+            className="text-blue-500 cursor-pointer lg:text-lg text-sm"
             tabIndex={0}
             onKeyDown={handleReadMore}
             onClick={setProjectId}

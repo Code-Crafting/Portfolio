@@ -10,7 +10,7 @@ const DetailsArea = ({ children }) => {
       exit={{ height: 0, opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={`${
-        pathname === "/" ? "lg:pl-14 sm:pl-12 pl-2" : "lg:pl-10 sm:pl-8 pl-2"
+        pathname === "/" ? "lg:pl-14 sm:pl-12" : "lg:pl-10 sm:pl-8 "
       } lg:mt-4 mt-2 overflow-hidden`}
     >
       {children}

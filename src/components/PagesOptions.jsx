@@ -4,12 +4,14 @@ import { Link } from "react-router";
 import MotionLi from "../ui/animations/MotionLi";
 import { changePageOnEnter } from "../lib/changePageOnEnter";
 
-const PagesOptions = ({ currentPage, setCurrentPage, setShowMenu }) => {
-  const pages = pagesOptions.slice(0, 5);
-
+const PagesOptions = ({
+  currentPage,
+  setCurrentPage,
+  setShowMenu = () => {},
+}) => {
   return (
     <ul className="850px:mt-8 mt-4 flex flex-col gap-1">
-      {pages.map((option, i) => {
+      {pagesOptions.infoPages.map((option) => {
         return (
           <MotionLi index={option.id} key={option.id}>
             <Link

@@ -7,7 +7,9 @@ const Scores = ({
 }) => {
   return (
     <div className={`text-center ${conStyle}`}>
-      <div className="text-3xl font-bold text-gray-800">{score}</div>
+      <div className="lg:text-3xl text-2xl font-bold text-gray-800">
+        {score}
+      </div>
       <div
         className={`${titleSize} text-gray-600 flex items-center gap-1 justify-center`}
       >
