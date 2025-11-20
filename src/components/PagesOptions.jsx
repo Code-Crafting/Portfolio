@@ -1,8 +1,6 @@
 import { pagesOptions } from "../constants/pagesOptions";
-import PagesLink from "../ui/links/PagesLink";
-import { Link } from "react-router";
-import MotionLi from "../ui/animations/MotionLi";
 import { changePageOnEnter } from "../lib/changePageOnEnter";
+import List from "./List";
 
 const PagesOptions = ({
   currentPage,
@@ -11,31 +9,20 @@ const PagesOptions = ({
 }) => {
   return (
     <ul className="850px:mt-8 mt-4 flex flex-col gap-1">
-      {pagesOptions.infoPages.map((option) => {
+      {pagesOptions.infoPages.map((option, i) => {
+        const { id, link, icon, text } = option;
         return (
-          <MotionLi index={option.id} key={option.id}>
-            <Link
-              to={option.link}
-              onClick={() => {
-                setCurrentPage(option.id);
-                setShowMenu();
-              }}
-              onKeyDown={() => changePageOnEnter(option.id, setCurrentPage)}
-              className={`block p-3 ${
-                option.id === currentPage ? "bg-gray-300" : ""
-              }  rounded-md transition-all duration-300`}
-            >
-              <PagesLink
-                icon={option.icon}
-                text={option.text}
-                currentSecColor={
-                  option.id === currentPage
-                    ? "text-textPrimary"
-                    : "text-textSecondary"
-                }
-              />
-            </Link>
-          </MotionLi>
+          <List
+            key={id}
+            index={i}
+            optionDetails={{ id, link, icon, text }}
+            onClick={() => {
+              setCurrentPage(id);
+              setShowMenu();
+            }}
+            onKeyDown={() => changePageOnEnter(option.id, setCurrentPage)}
+            currentPage={currentPage}
+          />
         );
       })}
     </ul>

@@ -19,7 +19,7 @@ const scoreBoardSyle =
 
 const SnakeGame = () => {
   const boardRef = useRef();
-  const [cellSize, setCellSize] = useState(25);
+  const [cellSize, setCellSize] = useState(null);
   const [snake, setSnake] = useState(INITIAL_SNAKE);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
   const [pendingDirection, setPendingDirection] = useState(INITIAL_DIRECTION);
@@ -56,16 +56,17 @@ const SnakeGame = () => {
   useEffect(() => {
     const updateCellSize = () => {
       if (!boardRef.current) return;
-      const maxWidth = Math.min(window.innerWidth - 40, 1024);
-      const maxHeight = window.innerHeight;
-      const maxDimension = Math.min(maxWidth, maxHeight);
+
+      const parentWidth = boardRef.current.parentElement.offsetWidth;
+      const maxDimension = Math.min(parentWidth, window.innerHeight);
+
       const newCellSize = Math.floor(maxDimension / GRID_SIZE);
-      setCellSize(Math.max(15, Math.min(newCellSize, 30)));
+
+      setCellSize(Math.max(12, Math.min(newCellSize, 30)));
     };
+
     updateCellSize();
-
     window.addEventListener("resize", updateCellSize);
-
     return () => window.removeEventListener("resize", updateCellSize);
   }, []);
 
@@ -180,83 +181,91 @@ const SnakeGame = () => {
       </FadeUp>
 
       {/* Board */}
-      <StagerFadeUp
-        ref={boardRef}
-        className="relative bg-gray-50 rounded-lg border-2 border-gray-300 shadow-inner overflow-hidden"
-        style={{
-          width: GRID_SIZE * cellSize,
-          height: GRID_SIZE * cellSize,
-        }}
-      >
-        {/* Grid pattern */}
-        <div className="absolute inset-0  pointer-events-none">
-          {Array.from({ length: GRID_SIZE }).map((_, i) => (
-            <div key={i} className="flex ">
-              {Array.from({ length: GRID_SIZE }).map((_, j) => (
-                <div key={j} style={{ width: cellSize, height: cellSize }} />
+      <div ref={boardRef} className="flex justify-center items-center w-full">
+        {cellSize !== null && (
+          <StagerFadeUp
+            className="relative bg-gray-50 rounded-lg border-2 border-gray-300 shadow-inner overflow-hidden"
+            style={{
+              width: GRID_SIZE * cellSize,
+              height: GRID_SIZE * cellSize,
+            }}
+          >
+            {/* Grid pattern */}
+            <div className="absolute inset-0  pointer-events-none">
+              {Array.from({ length: GRID_SIZE }).map((_, i) => (
+                <div key={i} className="flex ">
+                  {Array.from({ length: GRID_SIZE }).map((_, j) => (
+                    <div
+                      key={j}
+                      style={{ width: cellSize, height: cellSize }}
+                    />
+                  ))}
+                </div>
               ))}
             </div>
-          ))}
-        </div>
 
-        {/* Snake */}
-        {snake.map((segment, index) => (
-          <div
-            key={index}
-            className="absolute rounded"
-            style={{
-              left: segment.x * cellSize,
-              top: segment.y * cellSize,
-              width: cellSize - 2,
-              height: cellSize - 2,
-              backgroundColor: index === 0 ? "#6366f1" : "#818cf8",
-              boxShadow:
-                index === 0 ? "0 0 15px rgba(99, 102, 241, 0.4)" : "none",
-              zIndex: 10,
-            }}
-          />
-        ))}
+            {/* Snake */}
+            {snake.map((segment, index) => (
+              <div
+                key={index}
+                className="absolute rounded"
+                style={{
+                  left: segment.x * cellSize,
+                  top: segment.y * cellSize,
+                  width: cellSize - 2,
+                  height: cellSize - 2,
+                  backgroundColor: index === 0 ? "#6366f1" : "#818cf8",
+                  boxShadow:
+                    index === 0 ? "0 0 15px rgba(99, 102, 241, 0.4)" : "none",
+                  zIndex: 10,
+                }}
+              />
+            ))}
 
-        {/* Food */}
-        <div
-          className="absolute rounded-full animate-pulse"
-          style={{
-            left: food.x * cellSize + 2,
-            top: food.y * cellSize + 2,
-            width: cellSize - 4,
-            height: cellSize - 4,
-            backgroundColor: "#10b981",
-            boxShadow: "0 0 15px rgba(16, 185, 129, 0.5)",
-            zIndex: 5,
-          }}
-        />
+            {/* Food */}
+            <div
+              className="absolute rounded-full animate-pulse"
+              style={{
+                left: food.x * cellSize + 2,
+                top: food.y * cellSize + 2,
+                width: cellSize - 4,
+                height: cellSize - 4,
+                backgroundColor: "#10b981",
+                boxShadow: "0 0 15px rgba(16, 185, 129, 0.5)",
+                zIndex: 5,
+              }}
+            />
 
-        {/* Game Over Overlay */}
-        {isGameOver && (
-          <SnakeGameModal>
-            <p className="text-4xl font-bold text-red-500 mb-4">Game Over!</p>
-            <p className="text-2xl text-textPrimary mb-6">Score: {score}</p>
-            <Button width="w-full" onClick={resetGame}>
-              Play Again
-            </Button>
-          </SnakeGameModal>
+            {/* Game Over Overlay */}
+            {isGameOver && (
+              <SnakeGameModal>
+                <p className="text-4xl font-bold text-red-500 mb-4">
+                  Game Over!
+                </p>
+                <p className="text-2xl text-textPrimary mb-6">Score: {score}</p>
+                <Button width="w-full" onClick={resetGame}>
+                  Play Again
+                </Button>
+              </SnakeGameModal>
+            )}
+
+            {/* Start Screen */}
+            {status === "idle" && (
+              <SnakeGameModal>
+                <p className="text-3xl font-bold text-textPrimary mb-4">
+                  Ready to Play?
+                </p>
+                <Button width="w-full" onClick={resetGame}>
+                  Start Game
+                </Button>
+                <div className="text-textSecondary text-sm mt-2">
+                  <p>Use Arrow Keys or WASD to move</p>
+                </div>
+              </SnakeGameModal>
+            )}
+          </StagerFadeUp>
         )}
-
-        {/* Start Screen */}
-        {status === "idle" && (
-          <SnakeGameModal>
-            <p className="text-3xl font-bold text-textPrimary mb-4">
-              Ready to Play?
-            </p>
-            <Button width="w-full" onClick={resetGame}>
-              Start Game
-            </Button>
-            <div className="text-textSecondary text-sm mt-2">
-              <p>Use Arrow Keys or WASD to move</p>
-            </div>
-          </SnakeGameModal>
-        )}
-      </StagerFadeUp>
+      </div>
 
       {/* Instuctions */}
       <StagerFadeUp

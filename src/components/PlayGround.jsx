@@ -1,10 +1,8 @@
 import { pagesOptions } from "../constants/pagesOptions";
-import MotionLi from "../ui/animations/MotionLi";
-import { Link } from "react-router";
-import PagesLink from "../ui/links/PagesLink";
 import { changePageOnEnter } from "../lib/changePageOnEnter";
 import { motion } from "motion/react";
 import { useState } from "react";
+import List from "./List";
 
 const PlayGround = ({
   currentPage,
@@ -26,31 +24,20 @@ const PlayGround = ({
 
       {/* playgorund options */}
       <ul className="lg:mt-4 mt-2 flex flex-col gap-1">
-        {pagesOptions.gamePages.map((game) => {
+        {pagesOptions.gamePages.map((game, i) => {
+          const { id, link, icon, text } = game;
           return (
-            <MotionLi index={game.id} key={game.id}>
-              <Link
-                to={game.link}
-                onClick={() => {
-                  setCurrentPage(game.id);
-                  setShowMenu();
-                }}
-                onKeyDown={() => changePageOnEnter(game.id, setCurrentPage)}
-                className={`block p-3 ${
-                  game.id === currentPage ? "bg-gray-300" : ""
-                }  rounded-md transition-all duration-300`}
-              >
-                <PagesLink
-                  icon={game.icon}
-                  text={game.text}
-                  currentSecColor={
-                    game.id === currentPage
-                      ? "text-textPrimary"
-                      : "text-textSecondary"
-                  }
-                />
-              </Link>
-            </MotionLi>
+            <List
+              key={id}
+              index={i}
+              optionDetails={{ id, link, icon, text }}
+              onClick={() => {
+                setCurrentPage(id);
+                setShowMenu();
+              }}
+              onKeyDown={() => changePageOnEnter(game.id, setCurrentPage)}
+              currentPage={currentPage}
+            />
           );
         })}
       </ul>

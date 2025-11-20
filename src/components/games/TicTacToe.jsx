@@ -37,7 +37,7 @@ export default function TicTacToe() {
 
         <div className="flex xl:flex-row flex-col w-full xl:gap-8 gap-6">
           {/* Game Board */}
-          <FadeUp className="sm:w-2/3 450px:w-4/5 w-full xl:w-1/2 order-2 xl:order-1 mx-auto bg-white rounded-2xl p-6 shadow-md border border-gray-200">
+          <FadeUp className="sm:w-2/3 450px:w-4/5 w-full xl:w-1/2 order-2 xl:order-1 mx-auto bg-white rounded-2xl md:p-6 p-4 shadow-md border border-gray-200">
             <div className="grid grid-cols-3 gap-3">
               {board.map((cell, index) => (
                 <Cell

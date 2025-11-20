@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LuTrophy, LuRotateCw } from "react-icons/lu";
+import { LuTrophy } from "react-icons/lu";
 import FadeUp from "../../ui/animations/FadeUp";
 import GameHeader from "../../ui/GameHeader";
 import GameSubheader from "../../ui/GameSubheader";
@@ -92,7 +92,7 @@ const MemoryGame = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-[60%] mx-auto">
+      <div className="md:w-[60%] sm:w-[80%] w-full mx-auto">
         {/* Header */}
         <FadeUp className="text-center mb-8">
           <GameHeader title="Memory Match" />
@@ -106,20 +106,19 @@ const MemoryGame = () => {
 
           {/* reset button */}
           <Button onClick={resetGame} width="w-1/3" varient="error">
-            <LuRotateCw className="text-xl" title="rotate" />
             Reset
           </Button>
         </FadeUp>
 
         {/* Game Board */}
-        <StagerFadeUp className="rounded-2xl p-6 mb-6">
+        <StagerFadeUp className="rounded-2xl 450px:p-6 p-2 mb-6">
           <div className="grid grid-cols-4 gap-3">
             {cards.map((card, idx) => (
               <button
                 key={card.id}
                 onClick={() => handleCardClick(idx)}
                 disabled={card.isFlipped || card.isMatched || isChecking}
-                className={`aspect-square rounded-xl text-5xl font-bold transition-all duration-300 transform hover:scale-105 border border-gray-400 ${
+                className={`aspect-square rounded-xl lg:text-5xl 450px:text-4xl text-2xl font-bold transition-all duration-300 transform hover:scale-105 border border-gray-400 ${
                   card.isFlipped || card.isMatched
                     ? "bg-gray-200 shadow-lg scale-100 cursor-not-allowed"
                     : "bg-gray-300  cursor-pointer"

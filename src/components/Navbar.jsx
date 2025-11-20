@@ -3,11 +3,33 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import Header from "./Header";
 import PagesOptions from "./PagesOptions";
 import PlayGround from "./PlayGround";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
   const [currentPage, setCurrentPage] = useLocalStorage("currentPage", 1);
   const [showMenu, setShowMenu] = useState(false);
+  const sidebarRef = useRef();
+
+  // hide side on outside click
+  useEffect(() => {
+    const closeSidebar = (e) => {
+      if (
+        showMenu &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target)
+      ) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", closeSidebar); //desktop
+    document.addEventListener("toushstart", closeSidebar); //smaller devices
+
+    return () => {
+      document.removeEventListener("mousedown", closeSidebar); //desktop
+      document.removeEventListener("toushstart", closeSidebar); //smaller devices
+    };
+  }, [showMenu]);
 
   return (
     <header className="850px:hidden fixed w-full  bg-white/50 backdrop-blur-xl  z-9999">
@@ -18,6 +40,7 @@ const Navbar = () => {
         <AnimatePresence>
           {showMenu && (
             <motion.div
+              ref={sidebarRef}
               initial={{ x: 200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 200, opacity: 0 }}
