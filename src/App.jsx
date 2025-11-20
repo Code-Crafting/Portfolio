@@ -10,6 +10,7 @@ import PlayGroundLayout from "./layout/PlayGroundLayout";
 import { lazy } from "react";
 import LazyWrapper from "./components/LazyWrapper";
 import Navbar from "./components/Navbar";
+import ThemeContextProvider from "./contexts/themeContext";
 
 const TicTacToe = lazy(() => import("./components/games/TicTacToe"));
 const Snake = lazy(() => import("./components/games/Snake"));
@@ -17,52 +18,54 @@ const MemoryGame = lazy(() => import("./components/games/MemoryGame"));
 
 function App() {
   return (
-    <div className="min-h-screen 850px:flex relative">
-      {/* aside */}
-      <Aside />
-      <Navbar /> {/* only visible before 850px */}
-      <Routes>
-        {/* Portfolio Layout */}
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
+    <ThemeContextProvider>
+      <div className="min-h-screen 850px:flex relative">
+        {/* aside */}
+        <Aside />
+        <Navbar /> {/* only visible before 850px */}
+        <Routes>
+          {/* Portfolio Layout */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
 
-        {/* Playground Layout */}
-        <Route element={<PlayGroundLayout />}>
-          <Route
-            path="/tictactoe"
-            element={
-              <LazyWrapper>
-                <TicTacToe />
-              </LazyWrapper>
-            }
-          />
-          <Route
-            path="/snake"
-            element={
-              <LazyWrapper>
-                <Snake />
-              </LazyWrapper>
-            }
-          />
-          <Route
-            path="/memory"
-            element={
-              <LazyWrapper>
-                <MemoryGame />
-              </LazyWrapper>
-            }
-          />
-        </Route>
+          {/* Playground Layout */}
+          <Route element={<PlayGroundLayout />}>
+            <Route
+              path="/tictactoe"
+              element={
+                <LazyWrapper>
+                  <TicTacToe />
+                </LazyWrapper>
+              }
+            />
+            <Route
+              path="/snake"
+              element={
+                <LazyWrapper>
+                  <Snake />
+                </LazyWrapper>
+              }
+            />
+            <Route
+              path="/memory"
+              element={
+                <LazyWrapper>
+                  <MemoryGame />
+                </LazyWrapper>
+              }
+            />
+          </Route>
 
-        {/* 404 Fallback */}
-        <Route path="*" element={<div>Page Not Found</div>} />
-      </Routes>
-    </div>
+          {/* 404 Fallback */}
+          <Route path="*" element={<div>Page Not Found</div>} />
+        </Routes>
+      </div>
+    </ThemeContextProvider>
   );
 }
 

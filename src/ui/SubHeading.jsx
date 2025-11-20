@@ -1,6 +1,10 @@
+import { getHeadingColor } from "../lib/getHeadingColor";
+
 const SubHeading = ({ text = "SubHeading" }) => {
   return (
-    <h3 className="lg:text-xl text-lg font-semibold text-gray-900 mb-4">
+    <h3
+      className={`lg:text-xl text-lg font-semibold ${getHeadingColor()} mb-4`}
+    >
       {text}
     </h3>
   );

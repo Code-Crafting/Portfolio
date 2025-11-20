@@ -6,9 +6,15 @@ import SubHeading from "../ui/SubHeading";
 import ContactForm from "../components/ContactForm";
 import FormContextProvider from "../contexts/formContext";
 import { AnimatePresence } from "motion/react";
+import { useTheme } from "../contexts/themeContext";
 
 const Contact = () => {
   const [showContactDetails, setShowContactDetails] = useState(true);
+  const [isDark] = useTheme();
+
+  const formGradient = isDark
+    ? "from-darkAside via-gray-gray-600 to-gray-700 border border-borderDark"
+    : "from-blue-100 to-purple-100 border border-blue-300";
 
   return (
     <Section label="contact">
@@ -21,12 +27,18 @@ const Contact = () => {
       <AnimatePresence initial={false}>
         {showContactDetails && (
           <DetailsArea>
-            <p className="text-gray-600 lg:mb-6 mb-4 lg:text-lg text-sm">
+            <p
+              className={`${
+                isDark ? "text-darkPara" : "text-gray-700"
+              } lg:mb-6 mb-4 lg:text-lg text-sm`}
+            >
               Have a question or want to work together? Drop me a message!
             </p>
 
             {/* Contact form */}
-            <div className="bg-linear-to-br from-blue-100 to-purple-100 border border-blue-300 rounded-xl 450px:p-6 p-4 lg:w-2/3 w-full">
+            <div
+              className={`bg-linear-to-br ${formGradient}  rounded-xl 450px:p-6 p-4 lg:w-2/3 w-full`}
+            >
               <SubHeading text="Send me a message" />
 
               <FormContextProvider>

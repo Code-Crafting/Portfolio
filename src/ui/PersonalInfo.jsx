@@ -1,19 +1,28 @@
+import { useTheme } from "../contexts/themeContext";
+import { getHeadingColor } from "../lib/getHeadingColor";
+import { getParaColor } from "../lib/getParaColor";
+
 const PersonalInfo = ({ infoData }) => {
+  const [isDark] = useTheme();
   const { emoji, title, subtitle, link } = infoData;
   return (
     <div className=" flex gap-1 items-center">
       <p className="lg:text-2xl 450px:text-xl text-lg">{emoji}</p>
       <div className="flex gap-2 items-center lg:text-lg 450px:text-[16px] text-[14px]">
-        <p className="text-textSecondary">{title}:</p>
+        <p className={getParaColor()}>{title}:</p>
         {link ? (
           <a href={link} target="_blank" rel="noopener noreferrer">
-            <p className="text-textPrimary font-semibold hover:text-blue-800">
+            <p
+              className={`${getHeadingColor()} font-semibold ${
+                isDark ? "hover:text-blue-500" : "hover:text-blue-800"
+              }`}
+            >
               {subtitle}
               ↗️
             </p>
           </a>
         ) : (
-          <p className="text-textPrimary font-semibold">{subtitle}</p>
+          <p className={`${getHeadingColor()} font-semibold`}>{subtitle}</p>
         )}
       </div>
     </div>

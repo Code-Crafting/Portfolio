@@ -1,8 +1,12 @@
+import { useTheme } from "../contexts/themeContext";
+import { getHeadingColor } from "../lib/getHeadingColor";
+import { getParaColor } from "../lib/getParaColor";
 import { shortDescription } from "../lib/shortDescription";
 import AnchorLink from "../ui/links/AnchorLink";
 import Tech from "../ui/Tech";
 
 const ProjectCard = ({ projectData, setProjectId }) => {
+  const [isDark] = useTheme();
   const { emoji, title, description, links, techStack, gradient } = projectData;
 
   const handleReadMore = (e) => {
@@ -11,7 +15,11 @@ const ProjectCard = ({ projectData, setProjectId }) => {
     }
   };
   return (
-    <div className="border border-gray-300 rounded-md lg:p-6 p-4 sm:grid lg:grid-cols-[80px_1fr] sm:grid-cols-[60px_1fr] lg:gap-6 gap-4">
+    <div
+      className={`border ${
+        isDark ? "border-borderDark" : "border-gray-300 "
+      } rounded-md lg:p-6 p-4 sm:grid lg:grid-cols-[80px_1fr] sm:grid-cols-[60px_1fr] lg:gap-6 gap-4`}
+    >
       {/* logo */}
       <div
         className={`450px:w-20 w-15 mb-2 sm:w-auto aspect-square grid place-items-center rounded-md lg:text-5xl text-4xl ${gradient}`}
@@ -21,15 +29,17 @@ const ProjectCard = ({ projectData, setProjectId }) => {
 
       <div>
         {/* title */}
-        <h3 className="text-textPrimary lg:text-xl text-lg font-bold">
+        <h3 className={`${getHeadingColor()} lg:text-2xl text-lg font-bold`}>
           {title}
         </h3>
 
         {/* description */}
-        <p className="text-textSecondary lg:text-lg mt-1 ">
+        <p className={`${getParaColor()} lg:text-lg mt-1 `}>
           {shortDescription(description)}...
           <span
-            className="text-blue-500 cursor-pointer lg:text-lg text-sm"
+            className={`${
+              isDark ? "text-blue-400" : "text-blue-500"
+            } cursor-pointer lg:text-lg text-sm`}
             tabIndex={0}
             onKeyDown={handleReadMore}
             onClick={setProjectId}
@@ -55,7 +65,11 @@ const ProjectCard = ({ projectData, setProjectId }) => {
                 path={href}
                 text={linkName}
                 icon={icon}
-                color="text-blue-500 group-hover:text-blue-700"
+                color={
+                  isDark
+                    ? "text-blue-400 group-hover:text-blue-600"
+                    : "text-blue-500 group-hover:text-blue-700"
+                }
                 iconItile={iconTitle}
                 label={label}
               />

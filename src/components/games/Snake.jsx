@@ -156,7 +156,7 @@ const SnakeGame = () => {
   }, [isPlaying, pendingDirection, food, score]);
 
   return (
-    <div className="flex flex-col items-center justify-center  bg-white">
+    <div className="flex flex-col items-center justify-center">
       {/* header */}
       <FadeUp className="text-center mb-8">
         <GameHeader title="Snake Game" emoji={["🐍"]} />

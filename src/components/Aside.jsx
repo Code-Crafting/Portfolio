@@ -1,4 +1,5 @@
 import { pagesOptions } from "../constants/pagesOptions";
+import { useTheme } from "../contexts/themeContext";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import Header from "./Header";
 import PagesOptions from "./PagesOptions";
@@ -10,8 +11,16 @@ const Aside = () => {
     pagesOptions.infoPages[0].id
   );
 
+  const [isDark] = useTheme();
+
   return (
-    <aside className="xl:w-80 w-60 850px:block hidden border-r border-gray-400/50 p-4 bg-lightPrimary text-Textsecondary">
+    <aside
+      className={`xl:w-80 w-60 850px:block hidden border-r ${
+        isDark
+          ? "border-borderDark bg-darkAside"
+          : "border-borderLight  bg-lightPrimary"
+      } p-4`}
+    >
       {/* header */}
       <Header setCurrentPage={setCurrentPage} />
 

@@ -3,8 +3,13 @@ import { BsFillShareFill } from "react-icons/bs";
 import { FaDownload } from "react-icons/fa6";
 import CV from "../assets/files/CV.pdf";
 import { motion } from "motion/react";
+import { getParaColor } from "../lib/getParaColor";
+import { getHeadingColor } from "../lib/getHeadingColor";
+import { useTheme } from "../contexts/themeContext";
 
 const Profile = () => {
+  const [isDark] = useTheme();
+  // share feature
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -34,13 +39,15 @@ const Profile = () => {
 
         {/* details */}
         <div className="text-center 450px:text-left">
-          <h1 className="text-textPrimary lg:text-4xl text-3xl font-bold tracking-wide">
+          <h1
+            className={`${getHeadingColor()} lg:text-4xl text-3xl font-bold tracking-wide`}
+          >
             Monojit Sen
           </h1>
-          <p className="text-textSecondary lg:text-xl text-lg lg:mt-1 mt-0.5">
+          <p className={`${getParaColor()} lg:text-xl text-lg lg:mt-1 mt-0.5`}>
             Frontend Developer
           </p>
-          <p className="text-textSecondary lg:mt-1.5 mt-1">
+          <p className={`${getParaColor()} lg:mt-1.5 mt-1`}>
             ReactJS | JavaScript | TailwindCSS
           </p>
         </div>
@@ -49,7 +56,9 @@ const Profile = () => {
       <div className="flex 450px:gap-8 gap-4 mt-4 450px:pl-6 justify-center 450px:justify-start">
         {/* share btn */}
         <button
-          className="flex gap-2 items-center cursor-pointer text-sm lg:text-lg  text-textSecondary hover:text-gray-800"
+          className={`flex gap-2 items-center cursor-pointer text-sm lg:text-lg  ${getParaColor()} ${
+            isDark ? "hover:text-darkPara" : "hover:text-gray-800"
+          }`}
           onClick={handleShare}
         >
           <BsFillShareFill title="share" />
@@ -63,6 +72,9 @@ const Profile = () => {
           path={CV}
           icon={FaDownload}
           label="Download CV"
+          color={`${getParaColor()} ${
+            isDark ? "group-hover:text-darkPara" : "group-hover:text-gray-800"
+          }`}
         />
       </div>
     </motion.section>

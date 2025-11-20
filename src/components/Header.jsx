@@ -3,8 +3,14 @@ import { LuSun } from "react-icons/lu";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { CgMenu } from "react-icons/cg";
+import { useTheme } from "../contexts/themeContext";
 
 const Header = ({ setCurrentPage, setShowMenu = () => {} }) => {
+  const [isDark, setIsDark] = useTheme();
+
+  const changeThemeOnEnter = (e) => {
+    if (e.key === "Enter") setIsDark(isDark ? false : true);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,14 +28,31 @@ const Header = ({ setCurrentPage, setShowMenu = () => {} }) => {
         <div className="bg-linear-to-br from-blue-500 to-purple-600 w-max p-2 rounded-md text-white font-bold text-xs">
           MS
         </div>
-        <h6 className="font-semibold text-textPrimary text-lg">Portfolio</h6>
+        <h6
+          className={`font-semibold ${
+            isDark ? "text-whiteLike" : "text-textPrimary"
+          } text-lg`}
+        >
+          Portfolio
+        </h6>
       </Link>
       <div className="flex gap-4 items-center">
-        <PiMoonBold
-          className="text-xl cursor-pointer"
-          tabIndex={0}
-          title="Dark Theme"
-        />
+        <button onKeyDown={changeThemeOnEnter}>
+          {isDark ? (
+            <LuSun
+              className="text-xl cursor-pointer text-whiteLike"
+              title="Light Theme"
+              onClick={() => setIsDark(false)}
+            />
+          ) : (
+            <PiMoonBold
+              className="text-xl cursor-pointer text-textPrimary"
+              title="Dark Theme"
+              onClick={() => setIsDark(true)}
+            />
+          )}
+        </button>
+
         <motion.div
           initial={false}
           whileHover={{

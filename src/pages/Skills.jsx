@@ -5,9 +5,11 @@ import DetailsArea from "../ui/DetailsArea";
 import { skillsData } from "../constants/skillsData";
 import Tech from "../ui/Tech";
 import { AnimatePresence } from "motion/react";
+import { useTheme } from "../contexts/themeContext";
 
 const Skills = () => {
   const [showSkills, setShowSkills] = useState(true);
+  const [isDark] = useTheme();
 
   return (
     <Section label="skills">
@@ -20,7 +22,11 @@ const Skills = () => {
               {skillsData.map((skill) => {
                 return (
                   <div key={skill.id} className="lg:space-y-3 space-y-2">
-                    <p className="font-medium lg:text-lg text-gray-700">
+                    <p
+                      className={`font-medium lg:text-lg ${
+                        isDark ? "text-darkPara" : "text-gray-700"
+                      }`}
+                    >
                       {skill.title}
                     </p>
                     <ul className="flex gap-4">

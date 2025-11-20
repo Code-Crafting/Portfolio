@@ -1,7 +1,15 @@
+import { useTheme } from "../contexts/themeContext";
+import { getParaColor } from "../lib/getParaColor";
+
 const Tech = ({ tech, fontSize = "lg:text-lg text-sm" }) => {
+  const [isDark] = useTheme();
   return (
     <div
-      className={`rounded px-4 py-1 bg-gray-200 text-textSecondary font-medium ${fontSize} hover:bg-gray-300 transition`}
+      className={`rounded px-4 py-1 ${
+        isDark
+          ? "bg-borderDark hover:bg-darkAside"
+          : "bg-gray-200 hover:bg-gray-300"
+      } ${getParaColor()} font-medium ${fontSize}  transition`}
     >
       {tech}
     </div>

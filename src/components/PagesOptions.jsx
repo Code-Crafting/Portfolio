@@ -8,7 +8,7 @@ const PagesOptions = ({
   setShowMenu = () => {},
 }) => {
   return (
-    <ul className="850px:mt-8 mt-4 flex flex-col gap-1">
+    <ul className="850px:mt-8 mt-4 flex flex-col">
       {pagesOptions.infoPages.map((option, i) => {
         const { id, link, icon, text } = option;
         return (

@@ -12,6 +12,8 @@ import SentMsgContent from "./SentMsgContent";
 import Modal from "../ui/modal/Modal";
 import { modalConfig } from "../constants/modalConfig";
 import { AnimatePresence } from "motion/react";
+import { useTheme } from "../contexts/themeContext";
+import { getParaColor } from "../lib/getParaColor";
 
 const ContactForm = () => {
   const { handleSubmit, errors, reset } = useContext(FormContext);
@@ -20,9 +22,11 @@ const ContactForm = () => {
     show: false,
     varient: "success",
   });
+  const [isDark] = useTheme();
   const { title, subtitle, buttonText } = modalConfig[modal.varient];
-  const inputCommonStyle =
-    "w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg  placeholder:text-gary-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
+  const inputCommonStyle = `w-full px-4 py-2.5 border border-gray-300 rounded-lg  placeholder:text-gary-300 focus:outline-none focus:ring-2 ${
+    isDark ? "focus:ring-gray-500 bg-gray-100" : "focus:ring-blue-500 bg-white"
+  } focus:border-transparent transition-all`;
 
   // API Keys
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -56,7 +60,7 @@ const ContactForm = () => {
           <InputLabel label="Your Name" htmlFor="userName" />
           <TextInput
             id="userName"
-            placeholder="Monojit Sen"
+            placeholder="John Doe"
             style={inputCommonStyle}
           />
           {errors.userName && <InputError message={errors.userName.message} />}
@@ -111,7 +115,9 @@ const ContactForm = () => {
           )}
         </Button>
 
-        <p className="text-sm 450px:text-[16px] text-textSecondary text-center">
+        <p
+          className={`text-sm 450px:text-[16px] ${getParaColor()} text-center`}
+        >
           I'll get back to you within 24-48 hours 🚀
         </p>
       </form>

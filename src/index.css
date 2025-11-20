@@ -2,11 +2,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* colors */
+  /* light */
   --color-lightPrimary: #f9fafb;
   --color-textPrimary: #030712;
   --color-textSecondary: #5a606c;
-  --color-Textmuted: #718096;
+  --color-borderLight: #c8ced4;
+
+  /* dark */
+  --color-darkPrimary: #191919;
+  --color-darkAside: #202020;
+  --color-darkPara: #868584;
+  --color-whiteLike: #f9f7f5;
+  --color-borderDark: #2c2c2c;
+  --color-textDarkSecondary: #d1d5dc;
 
   /* shadows */
   --shadow-card: 0 8px 16px rgba(0, 0, 0, 0.4);
