@@ -1,15 +1,13 @@
 import { GRID_SIZE } from "../constants/snakeConfig";
-export function getRandomFood(snake) {
-  while (true) {
-    const food = {
+export const getRandomFood = (snake) => {
+  let newFood;
+  do {
+    newFood = {
       x: Math.floor(Math.random() * GRID_SIZE),
       y: Math.floor(Math.random() * GRID_SIZE),
     };
-
-    const isOnSnake = snake.some(
-      (segment) => segment.x === food.x && segment.y === food.y
-    );
-
-    if (!isOnSnake) return food;
-  }
-}
+  } while (
+    snake.some((segment) => segment.x === newFood.x && segment.y === newFood.y)
+  );
+  return newFood;
+};

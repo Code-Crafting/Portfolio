@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   GRID_SIZE,
-  CELL_SIZE,
   INITIAL_SNAKE,
   INITIAL_DIRECTION,
   GAME_SPEED,
@@ -16,9 +15,11 @@ import SnakeGameModal from "../../ui/modal/SnakeGameModal";
 import StagerFadeUp from "../../ui/animations/StagerFadeUp";
 
 const scoreBoardSyle =
-  "w-50 bg-gray-200 rounded-lg px-6 py-3 border border-gray-300";
+  "850px:w-50 450px:w-40 w-35 bg-gray-200 rounded-lg px-6 py-3 border border-gray-300";
 
 const SnakeGame = () => {
+  const boardRef = useRef();
+  const [cellSize, setCellSize] = useState(25);
   const [snake, setSnake] = useState(INITIAL_SNAKE);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
   const [pendingDirection, setPendingDirection] = useState(INITIAL_DIRECTION);
@@ -30,6 +31,18 @@ const SnakeGame = () => {
   const isPlaying = status === "playing";
   const isGameOver = status === "over";
 
+  // Mobile Controlers
+  const handleDirectionChange = (newDirection) => {
+    if (!isPlaying) return;
+
+    const isOpposite =
+      newDirection.x === -direction.x && newDirection.y === -direction.y;
+
+    if (!isOpposite) {
+      setPendingDirection(newDirection);
+    }
+  };
+
   const resetGame = () => {
     setSnake(INITIAL_SNAKE);
     setDirection(INITIAL_DIRECTION);
@@ -38,6 +51,23 @@ const SnakeGame = () => {
     setScore(0);
     setStatus("playing");
   };
+
+  // Calculate responsive cell size
+  useEffect(() => {
+    const updateCellSize = () => {
+      if (!boardRef.current) return;
+      const maxWidth = Math.min(window.innerWidth - 40, 1024);
+      const maxHeight = window.innerHeight;
+      const maxDimension = Math.min(maxWidth, maxHeight);
+      const newCellSize = Math.floor(maxDimension / GRID_SIZE);
+      setCellSize(Math.max(15, Math.min(newCellSize, 30)));
+    };
+    updateCellSize();
+
+    window.addEventListener("resize", updateCellSize);
+
+    return () => window.removeEventListener("resize", updateCellSize);
+  }, []);
 
   // Keyboard controls
   useEffect(() => {
@@ -133,39 +163,37 @@ const SnakeGame = () => {
       </FadeUp>
 
       {/* Stats Bar */}
-      <FadeUp className="bg-white/10  rounded-2xl p-4 mb-6  flex justify-between items-center gap-8">
+      <FadeUp className="bg-white/10  rounded-2xl p-4 mb-6  flex  justify-between items-center 450px:gap-8 gap-4">
         <Scores
           player="Score"
           score={score}
-          titleSize="text-lg"
+          titleSize="450px:text-lg"
           conStyle={scoreBoardSyle}
         />
 
         <Scores
           player="High Score"
           score={highScore}
-          titleSize="text-lg"
+          titleSize="450px:text-lg"
           conStyle={scoreBoardSyle}
         />
       </FadeUp>
 
+      {/* Board */}
       <StagerFadeUp
+        ref={boardRef}
         className="relative bg-gray-50 rounded-lg border-2 border-gray-300 shadow-inner overflow-hidden"
         style={{
-          width: GRID_SIZE * CELL_SIZE,
-          height: GRID_SIZE * CELL_SIZE,
+          width: GRID_SIZE * cellSize,
+          height: GRID_SIZE * cellSize,
         }}
       >
         {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute inset-0  pointer-events-none">
           {Array.from({ length: GRID_SIZE }).map((_, i) => (
-            <div key={i} className="flex">
+            <div key={i} className="flex ">
               {Array.from({ length: GRID_SIZE }).map((_, j) => (
-                <div
-                  key={j}
-                  className="border border-gray-300"
-                  style={{ width: CELL_SIZE, height: CELL_SIZE }}
-                />
+                <div key={j} style={{ width: cellSize, height: cellSize }} />
               ))}
             </div>
           ))}
@@ -177,10 +205,10 @@ const SnakeGame = () => {
             key={index}
             className="absolute rounded"
             style={{
-              left: segment.x * CELL_SIZE,
-              top: segment.y * CELL_SIZE,
-              width: CELL_SIZE - 2,
-              height: CELL_SIZE - 2,
+              left: segment.x * cellSize,
+              top: segment.y * cellSize,
+              width: cellSize - 2,
+              height: cellSize - 2,
               backgroundColor: index === 0 ? "#6366f1" : "#818cf8",
               boxShadow:
                 index === 0 ? "0 0 15px rgba(99, 102, 241, 0.4)" : "none",
@@ -193,10 +221,10 @@ const SnakeGame = () => {
         <div
           className="absolute rounded-full animate-pulse"
           style={{
-            left: food.x * CELL_SIZE + 2,
-            top: food.y * CELL_SIZE + 2,
-            width: CELL_SIZE - 4,
-            height: CELL_SIZE - 4,
+            left: food.x * cellSize + 2,
+            top: food.y * cellSize + 2,
+            width: cellSize - 4,
+            height: cellSize - 4,
             backgroundColor: "#10b981",
             boxShadow: "0 0 15px rgba(16, 185, 129, 0.5)",
             zIndex: 5,
@@ -208,7 +236,9 @@ const SnakeGame = () => {
           <SnakeGameModal>
             <p className="text-4xl font-bold text-red-500 mb-4">Game Over!</p>
             <p className="text-2xl text-textPrimary mb-6">Score: {score}</p>
-            <Button onClick={resetGame}>Play Again</Button>
+            <Button width="w-full" onClick={resetGame}>
+              Play Again
+            </Button>
           </SnakeGameModal>
         )}
 
@@ -218,7 +248,9 @@ const SnakeGame = () => {
             <p className="text-3xl font-bold text-textPrimary mb-4">
               Ready to Play?
             </p>
-            <Button onClick={resetGame}>Start Game</Button>
+            <Button width="w-full" onClick={resetGame}>
+              Start Game
+            </Button>
             <div className="text-textSecondary text-sm mt-2">
               <p>Use Arrow Keys or WASD to move</p>
             </div>
@@ -229,10 +261,40 @@ const SnakeGame = () => {
       {/* Instuctions */}
       <StagerFadeUp
         delay={0.2}
-        className="mt-6 flex justify-center gap-4 text-textSecondary text-sm"
+        className="mt-6 md:flex hidden justify-center gap-4 text-textSecondary text-sm"
       >
         <div className="bg-gray-200 rounded-lg px-4 py-2 border border-gray-300">
           <p>↑ ↓ ← → or WASD</p>
+        </div>
+      </StagerFadeUp>
+
+      {/* Mobile Control Buttons */}
+      <StagerFadeUp className="md:hidden flex flex-col items-center gap-2 mt-4">
+        <Button
+          onClick={() => handleDirectionChange({ x: 0, y: -1 })}
+          disabled={!isPlaying}
+        >
+          ↑
+        </Button>
+        <div className="flex gap-2">
+          <Button
+            onClick={() => handleDirectionChange({ x: -1, y: 0 })}
+            disabled={!isPlaying}
+          >
+            ←
+          </Button>
+          <Button
+            onClick={() => handleDirectionChange({ x: 0, y: 1 })}
+            disabled={!isPlaying}
+          >
+            ↓
+          </Button>
+          <Button
+            onClick={() => handleDirectionChange({ x: 1, y: 0 })}
+            disabled={!isPlaying}
+          >
+            →
+          </Button>
         </div>
       </StagerFadeUp>
     </div>

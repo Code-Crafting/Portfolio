@@ -16,7 +16,11 @@ const Button = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`${width} lg:text-lg cursor-pointer ${BTN_VARIANT[varient]} font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] `}
+      className={`${width} lg:text-lg ${
+        disabled ? "cursor-not-allowed" : "cursor-pointer hover:scale-[1.02]"
+      } ${
+        BTN_VARIANT[varient]
+      } font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg  `}
     >
       {children}
     </button>
