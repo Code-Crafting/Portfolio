@@ -1,6 +1,3 @@
-import { useTheme } from "../../contexts/themeContext";
-
-export const getHeadingColor = () => {
-  const [isDark] = useTheme();
+export const getHeadingColor = (isDark) => {
   return isDark ? "text-whiteLike" : "text-textPrimary";
 };

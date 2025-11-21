@@ -3,13 +3,13 @@ import { changePageOnEnter } from "../lib/changePageOnEnter";
 import { motion } from "motion/react";
 import List from "./List";
 import { useTheme } from "../contexts/themeContext";
+import { useContext } from "react";
+import { CurrentPageContext } from "../contexts/currentPageContext";
 
-const PlayGround = ({
-  currentPage,
-  setCurrentPage,
-  setShowMenu = () => {},
-}) => {
+const PlayGround = ({ setShowMenu = () => {} }) => {
   const [isDark] = useTheme();
+  const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
+
   return (
     <>
       <motion.div

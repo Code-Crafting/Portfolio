@@ -2,6 +2,7 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { BiErrorCircle } from "react-icons/bi";
 import { getParaColor } from "../lib/color/getParaColor";
 import { getHeadingColor } from "../lib/color/getHeadingColor";
+import { useTheme } from "../contexts/themeContext";
 
 const SentMsgContent = ({
   title = "Success",
@@ -24,6 +25,7 @@ const SentMsgContent = ({
     },
   };
 
+  const [isDark] = useTheme();
   const { icon: Icon, iconStyle, bgStyle, iconTitle } = MODAL_TYPE[varient];
 
   return (
@@ -36,13 +38,17 @@ const SentMsgContent = ({
       </div>
 
       <h3
-        className={`sm:text-2xl 450px:text-xl text-md ${getHeadingColor()} font-bold 450px:mt-4 mt-2`}
+        className={`sm:text-2xl 450px:text-xl text-md ${getHeadingColor(
+          isDark
+        )} font-bold 450px:mt-4 mt-2`}
       >
         {title}
       </h3>
 
       <p
-        className={`text-center ${getParaColor()} sm:text-lg 450px:text-sm text-[12px] 450px:mt-2 mt-1 450px:mb-4 mb-2`}
+        className={`text-center ${getParaColor(
+          isDark
+        )} sm:text-lg 450px:text-sm text-[12px] 450px:mt-2 mt-1 450px:mb-4 mb-2`}
       >
         {subtitle}
       </p>

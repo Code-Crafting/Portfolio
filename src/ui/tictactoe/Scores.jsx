@@ -19,7 +19,9 @@ const Scores = ({
         {score}
       </div>
       <div
-        className={`${titleSize} ${getParaColor()} flex items-center gap-1 justify-center`}
+        className={`${titleSize} ${getParaColor(
+          isDark
+        )} flex items-center gap-1 justify-center`}
       >
         {Icon && <Icon className="text-lg" />}
         {player}

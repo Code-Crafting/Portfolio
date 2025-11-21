@@ -1,12 +1,11 @@
+import { useContext } from "react";
 import { pagesOptions } from "../constants/pagesOptions";
 import { changePageOnEnter } from "../lib/changePageOnEnter";
 import List from "./List";
+import { CurrentPageContext } from "../contexts/currentPageContext";
 
-const PagesOptions = ({
-  currentPage,
-  setCurrentPage,
-  setShowMenu = () => {},
-}) => {
+const PagesOptions = ({ setShowMenu = () => {} }) => {
+  const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
   return (
     <ul className="850px:mt-8 mt-4 flex flex-col">
       {pagesOptions.infoPages.map((option, i) => {

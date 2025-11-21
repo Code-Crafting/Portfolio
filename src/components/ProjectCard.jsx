@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useTheme } from "../contexts/themeContext";
 import { getAnchorColor } from "../lib/color/getAnchorColor";
 import { getHeadingColor } from "../lib/color/getHeadingColor";
@@ -5,16 +6,19 @@ import { getParaColor } from "../lib/color/getParaColor";
 import { shortDescription } from "../lib/shortDescription";
 import AnchorLink from "../ui/links/AnchorLink";
 import Tech from "../ui/Tech";
+import { useContext } from "react";
+import { CurrentPageContext } from "../contexts/currentPageContext";
 
-const ProjectCard = ({ projectData }) => {
+const ProjectCard = ({ projectData, projectId }) => {
   const [isDark] = useTheme();
+  const [, setCurrentPage] = useContext(CurrentPageContext);
   const { emoji, title, description, links, techStack, gradient } = projectData;
 
-  const handleReadMore = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      setProjectId();
-    }
+  const handleReadMore = () => {
+    setCurrentPage(null);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
+
   return (
     <div
       className={`border ${
@@ -30,22 +34,26 @@ const ProjectCard = ({ projectData }) => {
 
       <div>
         {/* title */}
-        <h3 className={`${getHeadingColor()} lg:text-2xl text-lg font-bold`}>
+        <h3
+          className={`${getHeadingColor(isDark)} lg:text-2xl text-lg font-bold`}
+        >
           {title}
         </h3>
 
         {/* description */}
-        <p className={`${getParaColor()} lg:text-lg mt-1 `}>
+        <p className={`${getParaColor(isDark)} lg:text-lg mt-1 `}>
           {shortDescription(description)}...
-          <span
+          <Link
+            to={`/project/${projectId}`}
             className={`${
               isDark ? "text-blue-400" : "text-blue-500"
             } cursor-pointer lg:text-lg text-sm`}
             tabIndex={0}
+            onClick={handleReadMore}
             onKeyDown={handleReadMore}
           >
             read more
-          </span>
+          </Link>
         </p>
 
         {/* tech stack */}
@@ -65,7 +73,7 @@ const ProjectCard = ({ projectData }) => {
                 path={href}
                 text={linkName}
                 icon={icon}
-                color={getAnchorColor()}
+                color={getAnchorColor(isDark)}
                 iconItile={iconTitle}
                 label={label}
               />

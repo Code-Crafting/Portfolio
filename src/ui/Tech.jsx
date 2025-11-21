@@ -9,7 +9,9 @@ const Tech = ({ tech, fontSize = "lg:text-lg text-sm" }) => {
         isDark
           ? "bg-borderDark hover:bg-darkAside"
           : "bg-gray-200 hover:bg-gray-300"
-      } ${getParaColor()} font-medium ${fontSize}  transition duration-300`}
+      } ${getParaColor(
+        isDark
+      )} font-medium ${fontSize}  transition duration-300`}
     >
       {tech}
     </div>

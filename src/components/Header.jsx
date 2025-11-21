@@ -4,13 +4,15 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import { CgMenu } from "react-icons/cg";
 import { useTheme } from "../contexts/themeContext";
+import { useContext } from "react";
+import { CurrentPageContext } from "../contexts/currentPageContext";
 
-const Header = ({ setCurrentPage, setShowMenu = () => {} }) => {
-  const [isDark, setIsDark] = useTheme();
+import ToggleThemeBtn from "./ToggleThemeBtn";
 
-  const changeThemeOnEnter = (e) => {
-    if (e.key === "Enter") setIsDark(isDark ? false : true);
-  };
+const Header = ({ setShowMenu = () => {} }) => {
+  const [isDark] = useTheme();
+  const [, setCurrentPage] = useContext(CurrentPageContext);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -37,21 +39,7 @@ const Header = ({ setCurrentPage, setShowMenu = () => {} }) => {
         </h6>
       </Link>
       <div className="flex gap-4 items-center">
-        <button onKeyDown={changeThemeOnEnter}>
-          {isDark ? (
-            <LuSun
-              className="text-xl cursor-pointer text-whiteLike"
-              title="Light Theme"
-              onClick={() => setIsDark(false)}
-            />
-          ) : (
-            <PiMoonBold
-              className="text-xl cursor-pointer text-textPrimary"
-              title="Dark Theme"
-              onClick={() => setIsDark(true)}
-            />
-          )}
-        </button>
+        <ToggleThemeBtn />
 
         <motion.div
           initial={false}

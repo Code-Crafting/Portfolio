@@ -40,14 +40,20 @@ const Profile = () => {
         {/* details */}
         <div className="text-center 450px:text-left">
           <h1
-            className={`${getHeadingColor()} lg:text-4xl text-3xl font-bold tracking-wide`}
+            className={`${getHeadingColor(
+              isDark
+            )} lg:text-4xl text-3xl font-bold tracking-wide`}
           >
             Monojit Sen
           </h1>
-          <p className={`${getParaColor()} lg:text-xl text-lg lg:mt-1 mt-0.5`}>
+          <p
+            className={`${getParaColor(
+              isDark
+            )} lg:text-xl text-lg lg:mt-1 mt-0.5`}
+          >
             Frontend Developer
           </p>
-          <p className={`${getParaColor()} lg:mt-1.5 mt-1`}>
+          <p className={`${getParaColor(isDark)} lg:mt-1.5 mt-1`}>
             ReactJS | JavaScript | TailwindCSS
           </p>
         </div>
@@ -56,7 +62,9 @@ const Profile = () => {
       <div className="flex justify-center gap-4 mt-4 450px:gap-8 450px:pl-6 450px:justify-start">
         {/* share btn */}
         <button
-          className={`flex gap-2 items-center cursor-pointer text-sm lg:text-lg  ${getParaColor()} ${
+          className={`flex gap-2 items-center cursor-pointer text-sm lg:text-lg  ${getParaColor(
+            isDark
+          )} ${
             isDark ? "hover:text-whiteLike" : "hover:text-gray-800"
           } transition duration-300`}
           onClick={handleShare}
@@ -72,7 +80,7 @@ const Profile = () => {
           path={CV}
           icon={FaDownload}
           label="Download CV"
-          color={`${getParaColor()} ${
+          color={`${getParaColor(isDark)} ${
             isDark ? "hover:text-whiteLike" : "hover:text-gray-800"
           }`}
         />

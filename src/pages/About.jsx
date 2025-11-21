@@ -6,9 +6,11 @@ import DetailsArea from "../ui/DetailsArea";
 import Section from "../ui/tags/Section";
 import { AnimatePresence, motion } from "motion/react";
 import { getParaColor } from "../lib/color/getParaColor";
+import { useTheme } from "../contexts/themeContext";
 
 const About = () => {
   const [showAboutDetails, setShowAboutDetails] = useState(true);
+  const [isDark] = useTheme();
 
   return (
     <Section label="about-me">
@@ -21,7 +23,7 @@ const About = () => {
       <AnimatePresence initial={false}>
         {showAboutDetails && (
           <DetailsArea>
-            <p className={`lg:text-lg ${getParaColor()} tracking-wider`}>
+            <p className={`lg:text-lg ${getParaColor(isDark)} tracking-wider`}>
               I’m Monojit Sen, a self-taught Frontend Developer currently
               pursuing a B.Com degree from Calcutta University. <br />
               Even with a non-technical background, my curiosity for technology

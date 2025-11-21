@@ -54,7 +54,9 @@ export default function TicTacToe() {
         <div className="flex flex-col w-full gap-6 xl:flex-row xl:gap-8">
           {/* Game Board */}
           <FadeUp
-            className={`sm:w-2/3 450px:w-4/5 w-full xl:w-1/2 order-2 xl:order-1 mx-auto ${getCardColor()} rounded-2xl md:p-6 p-4 shadow-md border `}
+            className={`sm:w-2/3 450px:w-4/5 w-full xl:w-1/2 order-2 xl:order-1 mx-auto ${getCardColor(
+              isDark
+            )} rounded-2xl md:p-6 p-4 shadow-md border `}
           >
             <div className="grid grid-cols-3 gap-2 450px:gap-3">
               {board.map((cell, index) => (
@@ -73,7 +75,9 @@ export default function TicTacToe() {
             {/* Score Board */}
             <StagerFadeUp
               delay={0.1}
-              className={`${getCardColor()} rounded-2xl p-4  shadow-md border mb-4`}
+              className={`${getCardColor(
+                isDark
+              )} rounded-2xl p-4  shadow-md border mb-4`}
             >
               <div className="flex items-center justify-around">
                 {/* player X */}
@@ -90,7 +94,9 @@ export default function TicTacToe() {
             {/* Game Status */}
             <StagerFadeUp
               delay={0.2}
-              className={`${getCardColor()} rounded-2xl p-4 shadow-md border  text-center`}
+              className={`${getCardColor(
+                isDark
+              )} rounded-2xl p-4 shadow-md border  text-center`}
             >
               {winner ? (
                 <div className="flex items-center justify-center gap-2 text-xl font-semibold">

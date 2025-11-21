@@ -7,17 +7,19 @@ import ProjectContent from "./ProjectContent";
 import ProjectSubheading from "./ProjectSubheading";
 import photoFixVideo from "../../assets/videos/PhotoFix.mp4";
 import photoFixPoster from "../../assets/videoProster/photoFixPoster.png";
+import { getParaColor } from "../../lib/color/getParaColor";
+import { useTheme } from "../../contexts/themeContext";
 
-const PhotoFix = ({ projectId }) => {
-  const { techStack } = filterProject(projectId)[0];
+const PhotoFix = ({ techStack }) => {
+  const [isDark] = useTheme();
   return (
     <>
       {/* features */}
       <ProjectContent>
         <ProjectSubheading emoji="⚡" text="Key Features" />
-        <div className=" flex gap-4 ">
-          {photoFix.features.map((feature) => (
-            <Tech tech={feature} fontSize="text-lg" />
+        <div className=" flex flex-wrap gap-4 ">
+          {photoFix.features.map((feature, i) => (
+            <Tech key={i} tech={feature} fontSize="lg:text-lg" />
           ))}
         </div>
       </ProjectContent>
@@ -26,13 +28,13 @@ const PhotoFix = ({ projectId }) => {
       <ProjectContent>
         <ProjectSubheading emoji="💡" text="Challanges I Faced" />
 
-        {photoFix.challanges.map((challange) => (
-          <PostList emoji={challange.emoji} text={challange.text} />
+        {photoFix.challanges.map((challange, i) => (
+          <PostList key={i} emoji={challange.emoji} text={challange.text} />
         ))}
       </ProjectContent>
 
       <ProjectContent>
-        <p className="text-lg text-textSecondary">
+        <p className={`lg:text-lg ${getParaColor(isDark)}`}>
           ❗I also wanted to add some AI features, but they require a premium
           subscription for full use.
         </p>
@@ -40,11 +42,11 @@ const PhotoFix = ({ projectId }) => {
 
       {/* tech stack */}
       <ProjectContent>
-        <div className="flex gap-3 items-center">
-          <ProjectSubheading emoji="⚙️" text="Tech Stack: " mb={false} />
+        <div className="flex flex-wrap gap-3 items-center">
+          <ProjectSubheading emoji="⚙️" text="Tech Stack " mb={false} />
 
-          {techStack.map((tech) => (
-            <Tech tech={tech} fontSize="text-lg" />
+          {techStack.map((tech, i) => (
+            <Tech key={i} tech={tech} fontSize="lg:text-lg" />
           ))}
         </div>
       </ProjectContent>

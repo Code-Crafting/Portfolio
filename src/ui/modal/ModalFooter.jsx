@@ -1,10 +1,12 @@
 import { socialLinks } from "../../constants/socialLinks";
+import { useTheme } from "../../contexts/themeContext";
 import { getParaColor } from "../../lib/color/getParaColor";
 
 const ModalFooter = () => {
+  const [isDark] = useTheme();
   return (
     <div className="flex flex-col justify-center items-center">
-      <p className={`sm:text-lg text-sm ${getParaColor()}`}>
+      <p className={`sm:text-lg text-sm ${getParaColor(isDark)}`}>
         Connect with me on
       </p>
       <ul className="flex gap-2 mt-2">

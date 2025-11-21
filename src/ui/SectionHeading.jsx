@@ -43,7 +43,9 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
       <div className="flex gap-1 items-center">
         <p className="lg:text-3xl text-2xl">{emoji}</p>
         <h2
-          className={`${getHeadingColor()} capitalize lg:text-2xl text-xl font-bold traking-wide`}
+          className={`${getHeadingColor(
+            isDark
+          )} capitalize lg:text-2xl text-xl font-bold traking-wide`}
         >
           {title}
         </h2>

@@ -279,7 +279,9 @@ const SnakeGame = () => {
       {/* Instuctions */}
       <StagerFadeUp
         delay={0.2}
-        className={`mt-6 md:flex hidden justify-center gap-4 ${getParaColor()} text-sm`}
+        className={`mt-6 md:flex hidden justify-center gap-4 ${getParaColor(
+          isDark
+        )} text-sm`}
       >
         <div
           className={`${

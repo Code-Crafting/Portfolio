@@ -7,25 +7,21 @@ import PagesOptions from "./PagesOptions";
 import PlayGround from "./PlayGround";
 
 const Aside = () => {
-  const [currentPage, setCurrentPage] = useLocalStorage(
-    "currentPage",
-    pagesOptions.infoPages[0].id
-  );
-
   const [isDark] = useTheme();
-
   return (
     <aside
-      className={`xl:w-80 w-60 850px:block hidden border-r ${getAsideColor()} p-4`}
+      className={`xl:w-80 w-60 850px:block hidden border-r ${getAsideColor(
+        isDark
+      )} p-4`}
     >
       {/* header */}
-      <Header setCurrentPage={setCurrentPage} />
+      <Header />
 
       {/* page options */}
-      <PagesOptions currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <PagesOptions />
 
       {/* playground */}
-      <PlayGround currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <PlayGround />
     </aside>
   );
 };

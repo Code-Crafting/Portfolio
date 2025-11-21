@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import Header from "./Header";
 import PagesOptions from "./PagesOptions";
 import PlayGround from "./PlayGround";
@@ -8,7 +7,6 @@ import { useTheme } from "../contexts/themeContext";
 import { getAsideColor } from "../lib/color/getAsideColor";
 
 const Navbar = () => {
-  const [currentPage, setCurrentPage] = useLocalStorage("currentPage", 1);
   const [showMenu, setShowMenu] = useState(false);
   const sidebarRef = useRef();
   const [isDark] = useTheme();
@@ -26,11 +24,11 @@ const Navbar = () => {
     };
 
     document.addEventListener("mousedown", closeSidebar); //desktop
-    document.addEventListener("toushstart", closeSidebar); //smaller devices
+    document.addEventListener("touchstart", closeSidebar); //smaller devices
 
     return () => {
       document.removeEventListener("mousedown", closeSidebar); //desktop
-      document.removeEventListener("toushstart", closeSidebar); //smaller devices
+      document.removeEventListener("touchstart", closeSidebar); //smaller devices
     };
   }, [showMenu]);
 
@@ -41,7 +39,7 @@ const Navbar = () => {
       } backdrop-blur-xl z-50`}
     >
       <div className="relative">
-        <Header setCurrentPage={setCurrentPage} setShowMenu={setShowMenu} />
+        <Header setShowMenu={setShowMenu} />
 
         {/* menu */}
         <AnimatePresence>
@@ -52,7 +50,9 @@ const Navbar = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 200, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className={`absolute right-0 top-0 h-screen w-2xs border-l ${getAsideColor()} p-4 border`}
+              className={`absolute right-0 top-0 h-screen w-2xs border-l ${getAsideColor(
+                isDark
+              )} p-4 border`}
               style={{ originX: 1 }}
             >
               {/* close */}
@@ -67,18 +67,10 @@ const Navbar = () => {
                 ❌
               </motion.div>
               {/* page options */}
-              <PagesOptions
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                setShowMenu={() => setShowMenu(false)}
-              />
+              <PagesOptions setShowMenu={() => setShowMenu(false)} />
 
               {/* playground */}
-              <PlayGround
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                setShowMenu={() => setShowMenu(false)}
-              />
+              <PlayGround setShowMenu={() => setShowMenu(false)} />
             </motion.div>
           )}
         </AnimatePresence>

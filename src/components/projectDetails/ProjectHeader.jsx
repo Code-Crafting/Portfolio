@@ -3,11 +3,13 @@ import AnchorLink from "../../ui/links/AnchorLink";
 import { getHeadingColor } from "../../lib/color/getHeadingColor";
 import { getAnchorColor } from "../../lib/color/getAnchorColor";
 import { getParaColor } from "../../lib/color/getParaColor";
+import { useTheme } from "../../contexts/themeContext";
 
 const ProjectHeader = ({ title, github, live, description }) => {
+  const [isDark] = useTheme();
   return (
     <>
-      <h3 className={`text-3xl font-bold ${getHeadingColor()} mb-1`}>
+      <h3 className={`text-3xl font-bold ${getHeadingColor(isDark)} mb-1`}>
         {title}
       </h3>
 
@@ -17,14 +19,14 @@ const ProjectHeader = ({ title, github, live, description }) => {
           path={live}
           text="Live"
           textSize="text-xl"
-          color={getAnchorColor()}
+          color={getAnchorColor(isDark)}
         />
-        <RxSlash className={`text-xl ${getParaColor()}`} />
+        <RxSlash className={`text-xl ${getParaColor(isDark)}`} />
         <AnchorLink
           path={github}
           text="Repo"
           textSize="text-xl"
-          color={getAnchorColor()}
+          color={getAnchorColor(isDark)}
         />
       </div>
 

@@ -129,7 +129,9 @@ const ContactForm = () => {
         </Button>
 
         <p
-          className={`text-sm 450px:text-[16px] ${getParaColor()} text-center`}
+          className={`text-sm 450px:text-[16px] ${getParaColor(
+            isDark
+          )} text-center`}
         >
           I'll get back to you within 24-48 hours 🚀
         </p>

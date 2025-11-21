@@ -10,6 +10,7 @@ import Modal from "../../ui/modal/Modal";
 import { AnimatePresence } from "motion/react";
 import { getHeadingColor } from "../../lib/color/getHeadingColor";
 import { getParaColor } from "../../lib/color/getParaColor";
+import { useTheme } from "../../contexts/themeContext";
 
 const MemoryGame = () => {
   const emojis = ["🍔", "🍕", "🌭", "🥩", "🍰", "🍺", "🍵", "🌮"];
@@ -26,6 +27,7 @@ const MemoryGame = () => {
       }));
   };
 
+  const [isDark] = useTheme();
   const [cards, setCards] = useState(initializeGame());
   const [flippedCards, setFlippedCards] = useState([]);
   const [moves, setMoves] = useState(0);
@@ -161,12 +163,16 @@ const MemoryGame = () => {
                   title="trophy"
                 />
                 <h3
-                  className={`${getHeadingColor()} sm:text-4xl 450px:text-2xl text-xl font-bold`}
+                  className={`${getHeadingColor(
+                    isDark
+                  )} sm:text-4xl 450px:text-2xl text-xl font-bold`}
                 >
                   Congratulations 🎉
                 </h3>
                 <p
-                  className={`450px:mt-2 mt-1 450px:mb-6 mb-4 sm:text-lg 450px:text-md text-sm ${getParaColor()}`}
+                  className={`450px:mt-2 mt-1 450px:mb-6 mb-4 sm:text-lg 450px:text-md text-sm ${getParaColor(
+                    isDark
+                  )}`}
                 >
                   Completed in <span className="font-bold">{moves}</span> moves
                 </p>

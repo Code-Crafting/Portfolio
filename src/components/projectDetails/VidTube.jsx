@@ -2,15 +2,13 @@ import { vitTubeDetails } from "../../constants/projectDetails/vitTube";
 import ProjectSubheading from "./ProjectSubheading";
 import ProjectContent from "./ProjectContent";
 import Tech from "../../ui/Tech";
-import { filterProject } from "../../lib/filterProject";
 import PostList from "../../ui/PostList";
 import Video from "../../ui/Video";
 import vidTubeVideo from "../../assets/videos/VidTube.mp4";
 import vidTubePoster from "../../assets/videoProster/vidTubePoster.png";
+import { getParaColor } from "../../lib/color/getParaColor";
 
-const VidTube = ({ projectId }) => {
-  const { techStack } = filterProject(projectId)[0];
-
+const VidTube = ({ techStack }) => {
   return (
     <>
       {/* key features */}
@@ -25,14 +23,10 @@ const VidTube = ({ projectId }) => {
 
       {/* custom hooks */}
       <ProjectContent>
-        <div className="flex gap-2 items-center">
-          <ProjectSubheading emoji="🧩" text="Custom Hooks:" mb={false} />
+        <div className="flex flex-wrap gap-2 items-center">
+          <ProjectSubheading emoji="🧩" text="Custom Hooks" mb={false} />
           {vitTubeDetails.customHooks.map((hook, i) => {
-            return (
-              <p key={i} className="text-lg text-textSecondary">
-                {hook}
-              </p>
-            );
+            return <Tech tech={hook} key={i} fontSize="lg:text-lg" />;
           })}
         </div>
       </ProjectContent>
@@ -51,10 +45,10 @@ const VidTube = ({ projectId }) => {
       </ProjectContent>
 
       <ProjectContent>
-        <div className="flex gap-3 items-center">
-          <ProjectSubheading emoji="⚙️" text="Tech Stack:" mb={false} />
+        <div className="flex flex-wrap gap-3 items-center">
+          <ProjectSubheading emoji="⚙️" text="Tech Stack" mb={false} />
           {techStack.map((tech, i) => {
-            return <Tech key={i} tech={tech} fontSize="text-lg" />;
+            return <Tech key={i} tech={tech} fontSize="lg:text-lg" />;
           })}
         </div>
       </ProjectContent>

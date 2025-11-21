@@ -1,6 +1,3 @@
-import { useTheme } from "../../contexts/themeContext";
-
-export const getParaColor = () => {
-  const [isDark] = useTheme();
+export const getParaColor = (isDark) => {
   return isDark ? "text-darkPara" : "text-textSecondary";
 };

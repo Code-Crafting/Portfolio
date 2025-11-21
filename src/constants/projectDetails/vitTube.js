@@ -21,7 +21,7 @@ export const vitTubeDetails = {
       feature: "Dark/Light theme toggle",
     },
   ],
-  customHooks: ["useDebounce,", "useFetch,", "useLocalStorage"],
+  customHooks: ["useDebounce", "useFetch", "useLocalStorage"],
   optimizations: [
     {
       emoji: "1️⃣",

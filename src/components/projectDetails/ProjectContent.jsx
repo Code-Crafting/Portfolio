@@ -1,5 +1,5 @@
 const ProjectContent = ({ children }) => {
-  return <div className="space-y-1 mt-8">{children}</div>;
+  return <div className="space-y-1 lg:mt-8 mt-6">{children}</div>;
 };
 
 export default ProjectContent;
