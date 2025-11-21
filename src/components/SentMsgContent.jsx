@@ -27,16 +27,23 @@ const SentMsgContent = ({
   const { icon: Icon, iconStyle, bgStyle, iconTitle } = MODAL_TYPE[varient];
 
   return (
-    <div className="flex flex-col justify-center items-center px-8">
+    <div className="flex flex-col justify-center items-center sm:px-8 px-2">
       <div className={`${bgStyle} p-3 rounded-full`}>
-        <Icon className={`${iconStyle} text-6xl`} title={iconTitle} />
+        <Icon
+          className={`${iconStyle} sm:text-6xl text-4xl`}
+          title={iconTitle}
+        />
       </div>
 
-      <h3 className={`text-2xl ${getHeadingColor()} font-bold mt-4`}>
+      <h3
+        className={`sm:text-2xl 450px:text-xl text-md ${getHeadingColor()} font-bold 450px:mt-4 mt-2`}
+      >
         {title}
       </h3>
 
-      <p className={`text-center ${getParaColor()} text-lg mt-2 mb-4`}>
+      <p
+        className={`text-center ${getParaColor()} sm:text-lg 450px:text-sm text-[12px] 450px:mt-2 mt-1 450px:mb-4 mb-2`}
+      >
         {subtitle}
       </p>
       {children}

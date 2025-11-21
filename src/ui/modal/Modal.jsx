@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { useTheme } from "../../contexts/themeContext";
 
-const Modal = ({ children, width = "max-w-lg" }) => {
+const Modal = ({ children, width = "" }) => {
   const modalRef = useRef(null);
   const previouslyFocusedRef = useRef(null);
   const [isDark] = useTheme();
@@ -49,7 +49,7 @@ const Modal = ({ children, width = "max-w-lg" }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 bg-gray-700/50 backdrop-blur-sm w-full h-screen flex items-center justify-center "
+      className="absolute inset-0 flex items-center justify-center w-full h-dvh bg-gray-700/50 backdrop-blur-sm z-999"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
@@ -58,7 +58,7 @@ const Modal = ({ children, width = "max-w-lg" }) => {
         transition={{ duration: 0.25, ease: "easeOut" }}
         className={`${width} relative ${
           isDark ? "bg-textPrimary" : "bg-white"
-        } flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
+        } flex-1 rounded-2xl shadow-card 450px:p-8 p-6 max-h-screen`}
         ref={modalRef}
         tabIndex="-1"
         role="dialog"
@@ -67,7 +67,11 @@ const Modal = ({ children, width = "max-w-lg" }) => {
         {/* content */}
         {children}
 
-        <hr className="my-5 text-gray-400 rounded" />
+        <hr
+          className={`my-5 ${
+            isDark ? "text-whiteLike/50" : "text-gray-400"
+          } rounded`}
+        />
 
         {/* footer */}
         <ModalFooter />

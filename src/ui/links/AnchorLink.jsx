@@ -5,7 +5,7 @@ const AnchorLink = ({
   text = " text",
   textSize = "",
   addDownload = false,
-  color = "text-textSecondary group-hover:text-gray-800",
+  color = "text-textSecondary hover:text-gray-800",
   label = "link",
 }) => {
   return (
@@ -17,9 +17,11 @@ const AnchorLink = ({
       rel="noopener noreferrer"
       aria-label={label}
     >
-      <div className="flex gap-2 items-center cursor-pointer group text-sm lg:text-lg">
-        {Icon && <Icon className={color} title={iconItile} />}
-        <p className={`${color} ${textSize}`}>{text}</p>
+      <div
+        className={`flex items-center gap-2 text-sm ${color} transition duration-300 cursor-pointer lg:text-lg`}
+      >
+        {Icon && <Icon title={iconItile} />}
+        <p className={` ${textSize}`}>{text}</p>
       </div>
     </a>
   );

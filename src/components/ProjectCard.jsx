@@ -6,7 +6,7 @@ import { shortDescription } from "../lib/shortDescription";
 import AnchorLink from "../ui/links/AnchorLink";
 import Tech from "../ui/Tech";
 
-const ProjectCard = ({ projectData, setProjectId }) => {
+const ProjectCard = ({ projectData }) => {
   const [isDark] = useTheme();
   const { emoji, title, description, links, techStack, gradient } = projectData;
 
@@ -43,7 +43,6 @@ const ProjectCard = ({ projectData, setProjectId }) => {
             } cursor-pointer lg:text-lg text-sm`}
             tabIndex={0}
             onKeyDown={handleReadMore}
-            onClick={setProjectId}
           >
             read more
           </span>

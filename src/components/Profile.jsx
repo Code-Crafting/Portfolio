@@ -33,9 +33,9 @@ const Profile = () => {
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
       aria-label="profile"
     >
-      <div className="flex flex-col 450px:flex-row items-center 450px:gap-2">
+      <div className="flex flex-col items-center 450px:flex-row 450px:gap-2">
         {/* icon */}
-        <p className="lg:text-8xl 450px:text-7xl text-8xl text-center">🧑‍💻</p>
+        <p className="text-center lg:text-8xl 450px:text-7xl text-8xl">🧑‍💻</p>
 
         {/* details */}
         <div className="text-center 450px:text-left">
@@ -53,12 +53,12 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex 450px:gap-8 gap-4 mt-4 450px:pl-6 justify-center 450px:justify-start">
+      <div className="flex justify-center gap-4 mt-4 450px:gap-8 450px:pl-6 450px:justify-start">
         {/* share btn */}
         <button
           className={`flex gap-2 items-center cursor-pointer text-sm lg:text-lg  ${getParaColor()} ${
-            isDark ? "hover:text-darkPara" : "hover:text-gray-800"
-          }`}
+            isDark ? "hover:text-whiteLike" : "hover:text-gray-800"
+          } transition duration-300`}
           onClick={handleShare}
         >
           <BsFillShareFill title="share" />
@@ -73,7 +73,7 @@ const Profile = () => {
           icon={FaDownload}
           label="Download CV"
           color={`${getParaColor()} ${
-            isDark ? "group-hover:text-darkPara" : "group-hover:text-gray-800"
+            isDark ? "hover:text-whiteLike" : "hover:text-gray-800"
           }`}
         />
       </div>

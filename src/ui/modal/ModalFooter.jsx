@@ -4,7 +4,9 @@ import { getParaColor } from "../../lib/color/getParaColor";
 const ModalFooter = () => {
   return (
     <div className="flex flex-col justify-center items-center">
-      <p className={`text-lg ${getParaColor()}`}>Connect with me on</p>
+      <p className={`sm:text-lg text-sm ${getParaColor()}`}>
+        Connect with me on
+      </p>
       <ul className="flex gap-2 mt-2">
         {socialLinks.map((socilaLink) => {
           const {
@@ -17,7 +19,7 @@ const ModalFooter = () => {
           } = socilaLink;
           return (
             <li
-              className={`${bgColor} w-max grid place-items-center  rounded cursor-pointer`}
+              className={`${bgColor} w-max grid place-items-center rounded cursor-pointer`}
               key={id}
             >
               <a
@@ -27,7 +29,7 @@ const ModalFooter = () => {
                 rel="noopener noreferrer"
                 aria-label={title}
               >
-                <Icon className={`${iconColor} text-3xl `} />
+                <Icon className={`${iconColor} sm:text-3xl text-xl `} />
               </a>
             </li>
           );

@@ -1,4 +1,4 @@
-import { lazy, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import Section from "../ui/tags/Section";
 import SectionHeading from "../ui/SectionHeading";
 import DetailsArea from "../ui/DetailsArea";
@@ -16,9 +16,6 @@ const PhotoFix = lazy(() => import("../components/projectDetails/PhotoFix"));
 
 const Projects = () => {
   const [showProjectDetails, setShowProjectDetials] = useState(true);
-  const [modal, setModal] = useState({ show: false, projectId: "" });
-  const projectTitle =
-    modal.projectId && filterProject(modal.projectId)[0].title;
   return (
     <>
       <Section label="projects">
@@ -33,48 +30,13 @@ const Projects = () => {
             <DetailsArea>
               <div className="space-y-6">
                 {projectsDetails.map((project) => {
-                  return (
-                    <ProjectCard
-                      key={project.id}
-                      projectData={project}
-                      setProjectId={() =>
-                        setModal({ show: true, projectId: project.id })
-                      }
-                    />
-                  );
+                  return <ProjectCard key={project.id} projectData={project} />;
                 })}
               </div>
             </DetailsArea>
           )}
         </AnimatePresence>
       </Section>
-
-      <AnimatePresence>
-        {modal.show && (
-          <Modal width="max-w-5xl">
-            <div>
-              {/* closeBtn */}
-              <CloseBtn
-                size="text-3xl"
-                onClick={() => setModal({ show: false, projectid: "" })}
-              />
-
-              {/* content */}
-              <div className="h-[450px] overflow-y-auto hide-track mt-2 px-2">
-                <ProjectDetails projectId={modal.projectId}>
-                  <LazyWrapper>
-                    {projectTitle === "VidTube" ? (
-                      <VidTube projectId={modal.projectId} />
-                    ) : (
-                      <PhotoFix projectId={modal.projectId} />
-                    )}
-                  </LazyWrapper>
-                </ProjectDetails>
-              </div>
-            </div>
-          </Modal>
-        )}
-      </AnimatePresence>
     </>
   );
 };

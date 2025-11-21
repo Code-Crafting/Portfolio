@@ -38,7 +38,7 @@ const Navbar = () => {
     <header
       className={`850px:hidden fixed w-full ${
         isDark ? "bg-darkPrimary/50" : "bg-white/50"
-      } backdrop-blur-xl  z-9999`}
+      } backdrop-blur-xl z-50`}
     >
       <div className="relative">
         <Header setCurrentPage={setCurrentPage} setShowMenu={setShowMenu} />

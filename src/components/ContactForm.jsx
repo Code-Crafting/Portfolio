@@ -3,7 +3,7 @@ import EmailInput from "../ui/form/EmailInput";
 import InputLabel from "../ui/form/InputLabel";
 import TextArea from "../ui/form/TextArea";
 import TextInput from "../ui/form/TextInput";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FormContext } from "../contexts/formContext";
 import InputError from "../ui/form/InputError";
 import emailjs from "@emailjs/browser";
@@ -51,6 +51,19 @@ const ContactForm = () => {
       setIsSending(false);
     }
   };
+
+  useEffect(() => {
+    if (modal.show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      // Cleanup on unmount (just in case)
+      document.body.style.overflow = "auto";
+    };
+  }, [modal.show]);
 
   return (
     <>
@@ -123,8 +136,8 @@ const ContactForm = () => {
       </form>
 
       <AnimatePresence>
-        {/* {modal.show && (
-          <Modal>
+        {modal.show && (
+          <Modal width="sm:max-w-lg max-w-sm">
             <SentMsgContent
               varient={modal.varient}
               title={title}
@@ -139,22 +152,7 @@ const ContactForm = () => {
               </Button>
             </SentMsgContent>
           </Modal>
-        )} */}
-        <Modal>
-          <SentMsgContent
-            varient={modal.varient}
-            title={title}
-            subtitle={subtitle}
-          >
-            <Button
-              width="w-full"
-              varient={modal.varient}
-              onClick={() => setModal((prev) => ({ ...prev, show: false }))}
-            >
-              {buttonText}
-            </Button>
-          </SentMsgContent>
-        </Modal>
+        )}
       </AnimatePresence>
     </>
   );

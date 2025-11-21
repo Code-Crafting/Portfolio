@@ -46,17 +46,17 @@ export default function TicTacToe() {
     <div className="flex items-center justify-center p-4">
       <div className="sm:w-[80%] w-full mx-auto">
         {/* Header */}
-        <FadeUp className="text-center mb-8">
+        <FadeUp className="mb-8 text-center">
           <GameHeader title="TicTacToe" emoji={["⭕", "❌"]} />
           <GameSubheader text="Challenge your friend!" />
         </FadeUp>
 
-        <div className="flex xl:flex-row flex-col w-full xl:gap-8 gap-6">
+        <div className="flex flex-col w-full gap-6 xl:flex-row xl:gap-8">
           {/* Game Board */}
           <FadeUp
             className={`sm:w-2/3 450px:w-4/5 w-full xl:w-1/2 order-2 xl:order-1 mx-auto ${getCardColor()} rounded-2xl md:p-6 p-4 shadow-md border `}
           >
-            <div className="grid grid-cols-3 450px:gap-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 450px:gap-3">
               {board.map((cell, index) => (
                 <Cell
                   key={index}
@@ -69,13 +69,13 @@ export default function TicTacToe() {
             </div>
           </FadeUp>
 
-          <div className="450px:w-4/5 w-full xl:w-1/2 order-1 xl:order-2 mx-auto my-auto xl:space-y-4">
+          <div className="order-1 w-full mx-auto my-auto 450px:w-4/5 xl:w-1/2 xl:order-2 xl:space-y-4">
             {/* Score Board */}
             <StagerFadeUp
               delay={0.1}
               className={`${getCardColor()} rounded-2xl p-4  shadow-md border mb-4`}
             >
-              <div className="flex justify-around items-center">
+              <div className="flex items-center justify-around">
                 {/* player X */}
                 <Scores player="Player X" icon={TbUsers} score={scores.X} />
 
@@ -95,7 +95,7 @@ export default function TicTacToe() {
               {winner ? (
                 <div className="flex items-center justify-center gap-2 text-xl font-semibold">
                   <LuTrophy
-                    className="text-yellow-500 text-lg"
+                    className="text-lg text-yellow-500"
                     title="trophy"
                   />
                   <span className={winnerStatusColor}>
@@ -123,16 +123,15 @@ export default function TicTacToe() {
             <ActionsBtnTicTacToe
               resetGame={resetGame}
               resetScores={resetScores}
-              className="xl:flex hidden justify-center gap-3"
+              className="justify-center hidden gap-3 xl:flex"
             />
           </div>
 
           {/* Action Buttons only before xl*/}
-
           <ActionsBtnTicTacToe
             resetGame={resetGame}
             resetScores={resetScores}
-            className="xl:hidden flex justify-center order-3 lg:w-1/2 w-full mx-auto gap-3"
+            className="flex justify-center order-3 w-full gap-3 mx-auto xl:hidden lg:w-1/2"
           />
         </div>
       </div>

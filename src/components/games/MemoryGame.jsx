@@ -8,6 +8,8 @@ import Scores from "../../ui/tictactoe/Scores";
 import StagerFadeUp from "../../ui/animations/StagerFadeUp";
 import Modal from "../../ui/modal/Modal";
 import { AnimatePresence } from "motion/react";
+import { getHeadingColor } from "../../lib/color/getHeadingColor";
+import { getParaColor } from "../../lib/color/getParaColor";
 
 const MemoryGame = () => {
   const emojis = ["🍔", "🍕", "🌭", "🥩", "🍰", "🍺", "🍵", "🌮"];
@@ -29,6 +31,7 @@ const MemoryGame = () => {
   const [moves, setMoves] = useState(0);
   const [matches, setMatches] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
+  const [isGameWon, setIsGameWon] = useState(false);
 
   useEffect(() => {
     if (flippedCards.length === 2) {
@@ -88,19 +91,37 @@ const MemoryGame = () => {
     setIsChecking(false);
   };
 
-  const isGameWon = matches === 8;
+  useEffect(() => {
+    if (matches === 8) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      setIsGameWon(true);
+    }
+  }, [matches]);
+
+  useEffect(() => {
+    if (isGameWon) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      // Cleanup on unmount (just in case)
+      document.body.style.overflow = "auto";
+    };
+  }, [isGameWon]);
 
   return (
     <div className="flex items-center justify-center">
       <div className="md:w-[60%] sm:w-[80%] w-full mx-auto">
         {/* Header */}
-        <FadeUp className="text-center mb-8">
+        <FadeUp className="mb-8 text-center">
           <GameHeader title="Memory Match" />
           <GameSubheader text="Find all the matching pairs!" />
         </FadeUp>
 
         {/* Stats Bar */}
-        <FadeUp className="bg-white/10  rounded-2xl p-4 mb-6 flex justify-between items-center">
+        <FadeUp className="flex items-center justify-between p-4 mb-6 bg-white/10 rounded-2xl">
           <Scores player="Moves" score={moves} titleSize="text-lg" />
           <Scores player="Matches" score={matches} titleSize="text-lg" />
 
@@ -111,8 +132,8 @@ const MemoryGame = () => {
         </FadeUp>
 
         {/* Game Board */}
-        <StagerFadeUp className="rounded-2xl 450px:p-6 p-2 mb-6">
-          <div className="grid grid-cols-4 450px:gap-3 gap-2">
+        <StagerFadeUp className="p-2 mb-6 rounded-2xl 450px:p-6">
+          <div className="grid grid-cols-4 gap-2 450px:gap-3">
             {cards.map((card, idx) => (
               <button
                 key={card.id}
@@ -133,14 +154,20 @@ const MemoryGame = () => {
         {/* Win Modal */}
         <AnimatePresence>
           {isGameWon && (
-            <Modal>
-              <div className="flex flex-col justify-center items-center px-8">
+            <Modal width="sm:max-w-lg max-w-sm">
+              <div className="flex flex-col items-center justify-center px-8">
                 <LuTrophy
-                  className="mx-auto text-yellow-300 mb-4 text-5xl"
+                  className="mx-auto mb-4 text-4xl text-yellow-300 sm:text-6xl"
                   title="trophy"
                 />
-                <h3 className="text-4xl font-bold">Congratulations 🎉</h3>
-                <p className="text-tex text-lg mt-2 mb-6">
+                <h3
+                  className={`${getHeadingColor()} sm:text-4xl 450px:text-2xl text-xl font-bold`}
+                >
+                  Congratulations 🎉
+                </h3>
+                <p
+                  className={`450px:mt-2 mt-1 450px:mb-6 mb-4 sm:text-lg 450px:text-md text-sm ${getParaColor()}`}
+                >
                   Completed in <span className="font-bold">{moves}</span> moves
                 </p>
                 <Button onClick={resetGame} varient="primary">

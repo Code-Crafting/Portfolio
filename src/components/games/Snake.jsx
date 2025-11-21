@@ -161,13 +161,13 @@ const SnakeGame = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       {/* header */}
-      <FadeUp className="text-center mb-8">
+      <FadeUp className="mb-8 text-center">
         <GameHeader title="Snake Game" emoji={["🐍"]} />
         <GameSubheader text="Back to the Nokia Days" />
       </FadeUp>
 
       {/* Stats Bar */}
-      <FadeUp className="bg-white/10  sm:rounded-2xl rounded-lg p-4 mb-6  flex  justify-between items-center 450px:gap-8 gap-4">
+      <FadeUp className="flex items-center justify-between gap-4 p-4 mb-6 rounded-lg bg-white/10 sm:rounded-2xl 450px:gap-8">
         <Scores
           player="Score"
           score={score}
@@ -184,7 +184,7 @@ const SnakeGame = () => {
       </FadeUp>
 
       {/* Board */}
-      <div ref={boardRef} className="flex justify-center items-center w-full">
+      <div ref={boardRef} className="flex items-center justify-center w-full">
         {cellSize !== null && (
           <StagerFadeUp
             className={`relative ${
@@ -198,7 +198,7 @@ const SnakeGame = () => {
             }}
           >
             {/* Grid pattern */}
-            <div className="absolute inset-0  pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none">
               {Array.from({ length: GRID_SIZE }).map((_, i) => (
                 <div key={i} className="flex ">
                   {Array.from({ length: GRID_SIZE }).map((_, j) => (
@@ -246,10 +246,12 @@ const SnakeGame = () => {
             {/* Game Over Overlay */}
             {isGameOver && (
               <SnakeGameModal>
-                <p className="text-4xl font-bold text-red-500 mb-4">
+                <p className="mb-2 text-2xl font-bold text-red-500 450px:mb-4 450px:text-4xl">
                   Game Over!
                 </p>
-                <p className="text-2xl text-textPrimary mb-6">Score: {score}</p>
+                <p className="mb-4 text-xl 450px:mb-6 450px:text-2xl text-textPrimary">
+                  Score: {score}
+                </p>
                 <Button width="w-full" onClick={resetGame}>
                   Play Again
                 </Button>
@@ -259,13 +261,13 @@ const SnakeGame = () => {
             {/* Start Screen */}
             {status === "idle" && (
               <SnakeGameModal>
-                <p className="text-3xl font-bold text-textPrimary mb-4">
+                <p className="mb-4 text-3xl font-bold text-textPrimary">
                   Ready to Play?
                 </p>
                 <Button width="w-full" onClick={resetGame}>
                   Start Game
                 </Button>
-                <div className="text-textSecondary text-sm mt-2">
+                <div className="mt-2 text-sm text-textSecondary">
                   <p>Use Arrow Keys or WASD to move</p>
                 </div>
               </SnakeGameModal>
@@ -291,7 +293,7 @@ const SnakeGame = () => {
       </StagerFadeUp>
 
       {/* Mobile Control Buttons */}
-      <StagerFadeUp className="md:hidden flex flex-col items-center gap-2 mt-4">
+      <StagerFadeUp className="flex flex-col items-center gap-2 mt-4 md:hidden">
         <Button
           onClick={() => handleDirectionChange({ x: 0, y: -1 })}
           disabled={!isPlaying}
