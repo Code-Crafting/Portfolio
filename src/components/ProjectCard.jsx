@@ -1,6 +1,7 @@
 import { useTheme } from "../contexts/themeContext";
-import { getHeadingColor } from "../lib/getHeadingColor";
-import { getParaColor } from "../lib/getParaColor";
+import { getAnchorColor } from "../lib/color/getAnchorColor";
+import { getHeadingColor } from "../lib/color/getHeadingColor";
+import { getParaColor } from "../lib/color/getParaColor";
 import { shortDescription } from "../lib/shortDescription";
 import AnchorLink from "../ui/links/AnchorLink";
 import Tech from "../ui/Tech";
@@ -65,11 +66,7 @@ const ProjectCard = ({ projectData, setProjectId }) => {
                 path={href}
                 text={linkName}
                 icon={icon}
-                color={
-                  isDark
-                    ? "text-blue-400 group-hover:text-blue-600"
-                    : "text-blue-500 group-hover:text-blue-700"
-                }
+                color={getAnchorColor()}
                 iconItile={iconTitle}
                 label={label}
               />

@@ -13,7 +13,7 @@ import Modal from "../ui/modal/Modal";
 import { modalConfig } from "../constants/modalConfig";
 import { AnimatePresence } from "motion/react";
 import { useTheme } from "../contexts/themeContext";
-import { getParaColor } from "../lib/getParaColor";
+import { getParaColor } from "../lib/color/getParaColor";
 
 const ContactForm = () => {
   const { handleSubmit, errors, reset } = useContext(FormContext);
@@ -25,7 +25,7 @@ const ContactForm = () => {
   const [isDark] = useTheme();
   const { title, subtitle, buttonText } = modalConfig[modal.varient];
   const inputCommonStyle = `w-full px-4 py-2.5 border border-gray-300 rounded-lg  placeholder:text-gary-300 focus:outline-none focus:ring-2 ${
-    isDark ? "focus:ring-gray-500 bg-gray-100" : "focus:ring-blue-500 bg-white"
+    isDark ? "focus:ring-gray-500 bg-gray-200" : "focus:ring-blue-500 bg-white"
   } focus:border-transparent transition-all`;
 
   // API Keys
@@ -123,7 +123,7 @@ const ContactForm = () => {
       </form>
 
       <AnimatePresence>
-        {modal.show && (
+        {/* {modal.show && (
           <Modal>
             <SentMsgContent
               varient={modal.varient}
@@ -139,7 +139,22 @@ const ContactForm = () => {
               </Button>
             </SentMsgContent>
           </Modal>
-        )}
+        )} */}
+        <Modal>
+          <SentMsgContent
+            varient={modal.varient}
+            title={title}
+            subtitle={subtitle}
+          >
+            <Button
+              width="w-full"
+              varient={modal.varient}
+              onClick={() => setModal((prev) => ({ ...prev, show: false }))}
+            >
+              {buttonText}
+            </Button>
+          </SentMsgContent>
+        </Modal>
       </AnimatePresence>
     </>
   );

@@ -1,5 +1,7 @@
+import { getParaColor } from "../lib/color/getParaColor";
+
 const GameSubheader = ({ text }) => {
-  return <p className="text-gray-600 lg:text-lg">{text}</p>;
+  return <p className={`${getParaColor()} lg:text-lg`}>{text}</p>;
 };
 
 export default GameSubheader;

@@ -13,7 +13,7 @@ const Contact = () => {
   const [isDark] = useTheme();
 
   const formGradient = isDark
-    ? "from-darkAside via-gray-gray-600 to-gray-700 border border-borderDark"
+    ? "from-zinc-700 to-zinc-900 border border-borderDark"
     : "from-blue-100 to-purple-100 border border-blue-300";
 
   return (

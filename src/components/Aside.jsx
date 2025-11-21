@@ -1,6 +1,7 @@
 import { pagesOptions } from "../constants/pagesOptions";
 import { useTheme } from "../contexts/themeContext";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { getAsideColor } from "../lib/color/getAsideColor";
 import Header from "./Header";
 import PagesOptions from "./PagesOptions";
 import PlayGround from "./PlayGround";
@@ -15,11 +16,7 @@ const Aside = () => {
 
   return (
     <aside
-      className={`xl:w-80 w-60 850px:block hidden border-r ${
-        isDark
-          ? "border-borderDark bg-darkAside"
-          : "border-borderLight  bg-lightPrimary"
-      } p-4`}
+      className={`xl:w-80 w-60 850px:block hidden border-r ${getAsideColor()} p-4`}
     >
       {/* header */}
       <Header setCurrentPage={setCurrentPage} />

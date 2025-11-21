@@ -13,11 +13,11 @@ import Scores from "../../ui/tictactoe/Scores";
 import Button from "../../ui/Button";
 import SnakeGameModal from "../../ui/modal/SnakeGameModal";
 import StagerFadeUp from "../../ui/animations/StagerFadeUp";
-
-const scoreBoardSyle =
-  "850px:w-50 450px:w-40 w-35 bg-gray-200 rounded-lg px-6 py-3 border border-gray-300";
+import { useTheme } from "../../contexts/themeContext";
+import { getParaColor } from "../../lib/color/getParaColor";
 
 const SnakeGame = () => {
+  const [isDark] = useTheme();
   const boardRef = useRef();
   const [cellSize, setCellSize] = useState(null);
   const [snake, setSnake] = useState(INITIAL_SNAKE);
@@ -28,6 +28,9 @@ const SnakeGame = () => {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
+  const scoreBoardSyle = `850px:w-50 450px:w-40 w-35 ${
+    isDark ? "bg-darkPrimary border-borderDark" : "bg-gray-200 border-gray-300"
+  } rounded-lg px-6 py-3 border `;
   const isPlaying = status === "playing";
   const isGameOver = status === "over";
 
@@ -164,7 +167,7 @@ const SnakeGame = () => {
       </FadeUp>
 
       {/* Stats Bar */}
-      <FadeUp className="bg-white/10  rounded-2xl p-4 mb-6  flex  justify-between items-center 450px:gap-8 gap-4">
+      <FadeUp className="bg-white/10  sm:rounded-2xl rounded-lg p-4 mb-6  flex  justify-between items-center 450px:gap-8 gap-4">
         <Scores
           player="Score"
           score={score}
@@ -184,7 +187,11 @@ const SnakeGame = () => {
       <div ref={boardRef} className="flex justify-center items-center w-full">
         {cellSize !== null && (
           <StagerFadeUp
-            className="relative bg-gray-50 rounded-lg border-2 border-gray-300 shadow-inner overflow-hidden"
+            className={`relative ${
+              isDark
+                ? "bg-zinc-200 border-borderDark"
+                : "bg-gray-50 border-gray-300"
+            } rounded-lg border-2  shadow-inner overflow-hidden`}
             style={{
               width: GRID_SIZE * cellSize,
               height: GRID_SIZE * cellSize,
@@ -270,9 +277,15 @@ const SnakeGame = () => {
       {/* Instuctions */}
       <StagerFadeUp
         delay={0.2}
-        className="mt-6 md:flex hidden justify-center gap-4 text-textSecondary text-sm"
+        className={`mt-6 md:flex hidden justify-center gap-4 ${getParaColor()} text-sm`}
       >
-        <div className="bg-gray-200 rounded-lg px-4 py-2 border border-gray-300">
+        <div
+          className={`${
+            isDark
+              ? "bg-borderDark hover:bg-darkAside"
+              : "bg-gray-200 hover:bg-gray-300"
+          } rounded-lg px-4 py-2 border `}
+        >
           <p>↑ ↓ ← → or WASD</p>
         </div>
       </StagerFadeUp>

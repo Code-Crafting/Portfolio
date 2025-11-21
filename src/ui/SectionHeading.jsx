@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useLocation } from "react-router";
-import { getHeadingColor } from "../lib/getHeadingColor";
+import { getHeadingColor } from "../lib/color/getHeadingColor";
 import { useTheme } from "../contexts/themeContext";
+import Dropdown from "./Dropdown";
 
 const SectionHeading = ({ emoji, title, setterFnc }) => {
   const [rotate, setRotate] = useState(false);
@@ -38,15 +39,7 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
       onKeyDown={pathname === "/" ? handleDropdownOnKeyDown : () => {}}
       {...(pathname === "/" ? { tabIndex: 0 } : {})}
     >
-      {pathname === "/" && (
-        <RiArrowDownSLine
-          className={`sm:block hidden lg:text-3xl text-2xl ${getHeadingColor()} ${
-            rotate ? "-rotate-90" : ""
-          } transition ease-linear duration-150`}
-          title="dropdown"
-        />
-      )}
-
+      <Dropdown rotate={rotate} deg="-rotate-90" />
       <div className="flex gap-1 items-center">
         <p className="lg:text-3xl text-2xl">{emoji}</p>
         <h2
@@ -55,15 +48,8 @@ const SectionHeading = ({ emoji, title, setterFnc }) => {
           {title}
         </h2>
       </div>
-
-      {pathname === "/" && (
-        <RiArrowDownSLine
-          className={`sm:hidden block lg:text-3xl text-2xl text-textPrimary ${
-            rotate ? "rotate-90" : ""
-          } transition ease-linear duration-150`}
-          title="dropdown"
-        />
-      )}
+      <Dropdown rotate={rotate} deg="rotate-90" visibility="sm:hidden block" />{" "}
+      {/* for smaller screens*/}
     </div>
   );
 };

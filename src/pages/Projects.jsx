@@ -60,7 +60,7 @@ const Projects = () => {
               />
 
               {/* content */}
-              <div className="h-[500px] overflow-y-auto hide-track mt-2 px-2">
+              <div className="h-[450px] overflow-y-auto hide-track mt-2 px-2">
                 <ProjectDetails projectId={modal.projectId}>
                   <LazyWrapper>
                     {projectTitle === "VidTube" ? (

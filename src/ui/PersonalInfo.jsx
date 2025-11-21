@@ -1,6 +1,6 @@
 import { useTheme } from "../contexts/themeContext";
-import { getHeadingColor } from "../lib/getHeadingColor";
-import { getParaColor } from "../lib/getParaColor";
+import { getHeadingColor } from "../lib/color/getHeadingColor";
+import { getParaColor } from "../lib/color/getParaColor";
 
 const PersonalInfo = ({ infoData }) => {
   const [isDark] = useTheme();

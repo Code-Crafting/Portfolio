@@ -5,7 +5,7 @@ import PersonalInfo from "../ui/PersonalInfo";
 import DetailsArea from "../ui/DetailsArea";
 import Section from "../ui/tags/Section";
 import { AnimatePresence, motion } from "motion/react";
-import { getParaColor } from "../lib/getParaColor";
+import { getParaColor } from "../lib/color/getParaColor";
 
 const About = () => {
   const [showAboutDetails, setShowAboutDetails] = useState(true);

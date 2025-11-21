@@ -2,10 +2,12 @@ import { createPortal } from "react-dom";
 import ModalFooter from "./ModalFooter";
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
+import { useTheme } from "../../contexts/themeContext";
 
 const Modal = ({ children, width = "max-w-lg" }) => {
   const modalRef = useRef(null);
   const previouslyFocusedRef = useRef(null);
+  const [isDark] = useTheme();
 
   useEffect(() => {
     // focused element before the modal opend
@@ -54,7 +56,9 @@ const Modal = ({ children, width = "max-w-lg" }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className={`${width} relative bg-white flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
+        className={`${width} relative ${
+          isDark ? "bg-textPrimary" : "bg-white"
+        } flex-1 rounded-2xl shadow-card p-8 max-h-screen`}
         ref={modalRef}
         tabIndex="-1"
         role="dialog"

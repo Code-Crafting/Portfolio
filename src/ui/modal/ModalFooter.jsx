@@ -1,10 +1,11 @@
 import { socialLinks } from "../../constants/socialLinks";
+import { getParaColor } from "../../lib/color/getParaColor";
 
 const ModalFooter = () => {
   return (
     <div className="flex flex-col justify-center items-center">
-      <p className="text-textSecondary text-lg">Connect with me on</p>
-      <ul className="flex gap-2 mt-4">
+      <p className={`text-lg ${getParaColor()}`}>Connect with me on</p>
+      <ul className="flex gap-2 mt-2">
         {socialLinks.map((socilaLink) => {
           const {
             id,

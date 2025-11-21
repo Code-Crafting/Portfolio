@@ -1,4 +1,4 @@
-import { useTheme } from "../contexts/themeContext";
+import { useTheme } from "../../contexts/themeContext";
 
 export const getHeadingColor = () => {
   const [isDark] = useTheme();

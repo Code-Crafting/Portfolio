@@ -3,8 +3,8 @@ import { BsFillShareFill } from "react-icons/bs";
 import { FaDownload } from "react-icons/fa6";
 import CV from "../assets/files/CV.pdf";
 import { motion } from "motion/react";
-import { getParaColor } from "../lib/getParaColor";
-import { getHeadingColor } from "../lib/getHeadingColor";
+import { getParaColor } from "../lib/color/getParaColor";
+import { getHeadingColor } from "../lib/color/getHeadingColor";
 import { useTheme } from "../contexts/themeContext";
 
 const Profile = () => {

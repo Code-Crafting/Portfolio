@@ -1,5 +1,7 @@
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { BiErrorCircle } from "react-icons/bi";
+import { getParaColor } from "../lib/color/getParaColor";
+import { getHeadingColor } from "../lib/color/getHeadingColor";
 
 const SentMsgContent = ({
   title = "Success",
@@ -30,9 +32,11 @@ const SentMsgContent = ({
         <Icon className={`${iconStyle} text-6xl`} title={iconTitle} />
       </div>
 
-      <h3 className="text-2xl font-bold mt-4">{title}</h3>
+      <h3 className={`text-2xl ${getHeadingColor()} font-bold mt-4`}>
+        {title}
+      </h3>
 
-      <p className="text-center text-textSecondary text-lg mt-2 mb-4">
+      <p className={`text-center ${getParaColor()} text-lg mt-2 mb-4`}>
         {subtitle}
       </p>
       {children}

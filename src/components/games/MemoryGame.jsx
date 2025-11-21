@@ -112,13 +112,13 @@ const MemoryGame = () => {
 
         {/* Game Board */}
         <StagerFadeUp className="rounded-2xl 450px:p-6 p-2 mb-6">
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-4 450px:gap-3 gap-2">
             {cards.map((card, idx) => (
               <button
                 key={card.id}
                 onClick={() => handleCardClick(idx)}
                 disabled={card.isFlipped || card.isMatched || isChecking}
-                className={`aspect-square rounded-xl lg:text-5xl 450px:text-4xl text-2xl font-bold transition-all duration-300 transform hover:scale-105 border border-gray-400 ${
+                className={`aspect-square 450px:rounded-xl rounded-lg lg:text-5xl 450px:text-4xl text-2xl font-bold transition-all duration-300 transform hover:scale-105 border border-gray-400 ${
                   card.isFlipped || card.isMatched
                     ? "bg-gray-200 shadow-lg scale-100 cursor-not-allowed"
                     : "bg-gray-300  cursor-pointer"

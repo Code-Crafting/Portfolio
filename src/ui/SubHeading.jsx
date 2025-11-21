@@ -1,4 +1,4 @@
-import { getHeadingColor } from "../lib/getHeadingColor";
+import { getHeadingColor } from "../lib/color/getHeadingColor";
 
 const SubHeading = ({ text = "SubHeading" }) => {
   return (

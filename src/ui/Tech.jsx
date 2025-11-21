@@ -1,5 +1,5 @@
 import { useTheme } from "../contexts/themeContext";
-import { getParaColor } from "../lib/getParaColor";
+import { getParaColor } from "../lib/color/getParaColor";
 
 const Tech = ({ tech, fontSize = "lg:text-lg text-sm" }) => {
   const [isDark] = useTheme();
